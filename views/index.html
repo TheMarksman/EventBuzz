@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventBuzz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="components/appjs/app.min.css">
+  </head>
+<!--BODY-->
+  <body>
+    <div class="app-page" data-page="home">
+      <!--Toolbar-->  
+      <div class="app-topbar dark-blue">
+        <div class="app-title">Home</div>
+  		<div class="app-button right" data-target="login">Login</div>
+      </div>
+      <!--Content-->
+	  <div class="app-content" style="background:#DAA520">
+	  	<!-- Welcome Message (very top of main screen) -->
+	  	<div class="app-section">
+	  		<div class="introText" style="font-weight:bold; font-size: 24px"></div>
+	    	<!--<h2>Welcome to EventBuzz:). Browse through any of these by category or date. @#yolo</h2>-->
+	  	</div>
+    	
+    	<!-- Categories (mid-top section of main) -->  	
+		<div class="app-section">
+			<h3>Categories<h3>
+			<ul class="app-list">
+				<li style="display:inline" class="app-button green" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick(null)" >#all</li>
+				<li style="display:inline" class="app-button orange" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('none')" >#none</li>
+				<li style="display:inline" class="app-button red" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('sports')" >#Sports</li>
+				<li style="display:inline" class="app-button green" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('infosession')" >#InfoSessions</li>
+				<li style="display:inline" class="app-button yellow" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('greek')" >#Greek</li>
+				<li style="display:inline" class="app-button blue" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('coc')" >#CoC</li>
+				<li style="display:inline" class="app-button blue" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('clergy')" >#Clergy</li>
+				<li style="display:inline" class="app-button orange" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('gatech')" >#GaTech</li>
+				<li style="display:inline" class="app-button teal" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('atl')" >#ATL</li>
+				<li style="display:inline" class="app-button dark-blue" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('merp')" >#merp</li>
+			</ul>
+		</div>
+		
+    	<!-- NewEventsList (middle section of main) -->
+    	<div class="app-section">
+    		<div class="app-content app-scrollable" style="height: 200px; overflow: scroll;">
+				<ul id="eventsList" class="app-list">
+					<li class="app-button green" data-target="page2">ACoC</li>
+				</ul>
+			</div>
+		</div>
+		
+    	<!--
+    	IMPORTANT, this list REDIRECTS correctly. BUT it is STATIC
+    	//OldEventsList//
+    	<div class="app-section">
+    		<div class="app-content app-scrollable" style="height: 500px; overflow: scroll;">
+				<ul class="app-list">
+					<label >10.11.14</label>
+         			<li class="app-button" data-target="page2">Microsof @ CoC</li>
+         			<li class="app-button" data-target="page2">CRC Hosts merp merp merp</li>
+         			<li class="app-button" data-target="page2">Archery Club orientations</li>
+         			<label>10.12.14</label>
+         			<li class="app-button" data-target="page2">mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar </li>
+         			<li class="app-button" data-target="page2">mar</li>
+         			<label>10.13.14</label>
+         			<li class="app-button" data-target="page2">mer</li>
+         			<li class="app-button" data-target="page2">mar</li>
+				</ul>
+			</div>
+		</div>
+		-->
+		<!-- Add Event Button (bottom of main)-->
+	  	<div class="app-section" style="background:#345">
+        	<div class="app-button dark-blue" data-target="page2">Add an event!</div>
+	  	</div>	
+	</div>
+	</div>
+	
+    <!--Login <Phill>-->  
+    <div class="app-page" data-page="login">
+      <div class="app-topbar dark-blue">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Login</div>
+      </div>
+      <div class="app-content" style="background:#DAA520">
+        <center><img src="img/header.png" style="height = auto; max-width:100%; margin-top: 25%"></center>
+          <div class="app-section" style="margin-top: 25%">
+            <input id="usnm" class="app-input" value = "Username: " style = "color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
+            <input id="pswrd" class="app-input" value = "Password: " style = "color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
+            </div>
+              <div class = "app-section">
+              <div class="app-button" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+	<!--Page2 <Rita>-->  
+    <div class="app-page" data-page="page2">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Event Info</div>
+      </div>
+      <div class="app-content">
+        Rita
+      </div>
+    </div>
+
+<!--Scripts-->  
+    <script src="components/appjs/zepto.js"></script>
+    <script src="components/appjs/app.min.js"></script>
+    <script src="components/lodash.js"></script>
+    <script src="js/MainEvent.js"></script>
+    <script src="js/Login.js"></script>
+    <script src="js/EventDetails.js"></script>
+  </body>
+</html>
