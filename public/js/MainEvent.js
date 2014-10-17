@@ -6,17 +6,19 @@ App.controller('home', function (page, eventsData) {
 	
 	$(page).on('appShow', function () {
 		Query.getAllData(function (eventsData) {
-			var eventsObject = eventsData.events,
-				eventOrder = eventsData.order,
-				list = document.getElementById('eventsList');
+			// TODO: FIX required GLOBALS (ew...)
+			eventsObject = eventsData.events;
+			orderedArray = eventsData.order;
+			
+			var list = document.getElementById('eventsList');
 
-			createList(list, eventsObject, eventOrder, null);
+			createList(list, null);
     	});
 	});
 });
 
 //creates the events list on the home page
-function createList(list, eventsObject, orderedArray, filterBy) {
+function createList(list, filterBy) {
 	//first date = first event .getDate()
 	var currDate = eventsObject[orderedArray[0]].date;
 	//create label with first date
