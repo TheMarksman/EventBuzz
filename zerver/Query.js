@@ -1,3 +1,8 @@
+
+// This file runs on the server. See https://www.npmjs.org/package/zerver for details.
+// This file is responsible for handling all queries to the server from the front end.
+// Here is where the server will query the database and return the results in the callback function
+// provided by the front end.
 exports.getAllData = function (callback) {
 	// TODO: REPLACE WITH DB CALL
 	var event1 = {name: "ACoC", date: "October 14, 1975 11:13", categories: {'sports': true, 'clergy': true}},
