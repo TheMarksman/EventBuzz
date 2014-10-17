@@ -1,4 +1,5 @@
 var express = require('express');
+var zerver = require('zerver');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -18,6 +19,7 @@ app.engine('html', require('ejs').renderFile);
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(zerver.middleware(__dirname));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
