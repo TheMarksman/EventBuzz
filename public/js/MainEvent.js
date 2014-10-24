@@ -1,92 +1,87 @@
 // This file is responsible for all functions and controllers associated 
 // with the main event (home) page.
 
-App.controller('home', function (page, eventsData) {
-	$(page).find('.introText').text('Welcome to EventBuzz:). Browse through any of these by category or date. @#yolo');
-	
-	$(page).on('appShow', function () {
-		Query.getAllData(function (eventsData) {
-			// TODO: FIX required GLOBALS (ew...)
-			eventsObject = eventsData.events;
-			orderedArray = eventsData.order;
-			
+		App.controller('home', function (page, eventsObject) {
+			$(page).find('.introText').text(intro);
+			$(page).on('appShow', function () {
+				console.log('page finished rendering now, start modifing...');
+				var list = document.getElementById('eventsList');
+				//this clears the list to fix the bug where navigating back to home duplicates the existing list
+				list.innerHTML = "";
+				createList(list, null);
+				
+				//manually change color of #all and #none buttons, like a noob:
+				var element1 = document.getElementById('#all');
+				var element2 = document.getElementById('#none');
+				element1.style.background = '#000000';
+				element2.style.background = '#000000';
+			});
+		});
+
+
+
+    	//called when a category button is clicked
+		function categoryButtonClick(filterByString) {
 			var list = document.getElementById('eventsList');
-
-			createList(list, null);
-    	});
-	});
-});
-
-//creates the events list on the home page
-function createList(list, filterBy) {
-	//first date = first event .getDate()
-	var currDate = eventsObject[orderedArray[0]].date;
-	//create label with first date
-	
-	//first, trim the time of the dates, we dont want it displayed in the label
-	var semiColonIndex = currDate.lastIndexOf(":");
-	var newIndex = semiColonIndex - 3;
-	var finalDateString = currDate.substring(0,newIndex);
-	
-	createLabel(finalDateString, list);
-
-	for(var key in orderedArray) {
-		var currentEvent = eventsObject[orderedArray[key]],
-			eventDate = currentEvent.date;
-
-		
-		if( !(currDate === eventDate) ) {
-			//create new label for new date, but first...
-			//first, trim the time of the dates, we dont want it displayed in the label
-			var semiColonIndex = eventDate.lastIndexOf(":");
+			list.innerHTML = '';
+			createList(list, filterByString);			
+		}
+		//helper method that creates a <label> element and inserts it into list
+		function createLabel(data, list) {
+			var entry = document.createElement('label');
+			entry.appendChild(document.createTextNode(data));
+			list.appendChild(entry);
+		}
+		//helper method that creates a <li> element and inserts it into list
+		function createItem(data, list) { 
+			var entry = document.createElement('li');
+			entry.setAttribute('class','app-button red');
+			entry.setAttribute('data-target','page2');
+			entry.setAttribute("onClick","transferToEventDetailsPage()");
+			entry.appendChild(document.createTextNode(data));
+			list.appendChild(entry);
+		}
+		//creates the events list on the home page
+		function createList(list, filterBy) {
+			//first date = first event .getDate()
+			var currDate = eventObjects[orderedArray[0]].date;
+			//create label with first date
+				//1. first, trim the time of the dates, we dont want it displayed in the label
+			var semiColonIndex = currDate.lastIndexOf(":");
 			var newIndex = semiColonIndex - 3;
-			var finalDateString = eventDate.substring(0,newIndex);
-			createLabel(finalDateString, list);	
-			currDate = eventDate;
-		}
-		//create list item for event
-		if(filterBy == null){
-			createItem(currentEvent.name, list);
-		}
-			if(currentEvent.categories[filterBy]) {				
-				createItem(currentEvent.name,list);
+			var finalDateString = currDate.substring(0,newIndex);
+			createLabel(finalDateString, list);
+
+			for(var key in orderedArray) {
+				//current event
+				var event = eventObjects[orderedArray[key]];
+				
+				//current date = first date
+				var eventDate = event.date;
+				
+				//if(current date != event .getDate() )				
+				if( !(currDate === eventDate) ) {
+					//create new label for new date, but first...
+						//1. first, trim the time of the dates, we dont want it displayed in the label
+					var semiColonIndex = eventDate.lastIndexOf(":");
+					var newIndex = semiColonIndex - 3;
+					var finalDateString = eventDate.substring(0,newIndex);
+					createLabel(finalDateString, list);	
+
+					//adjust currdate
+					currDate = eventDate;
+				}
+				//create list item for event
+				if(filterBy==null){
+					createItem(event.name,list);
+				}
+ 				if(event.categories[filterBy]) {
+					//(event.categories[filterBy]) 					
+					createItem(event.name,list);
+ 				}
 			}
-	}
-};
-
-//called when a category button is clicked
-function categoryButtonClick(filterByString) {
-	//alert('Sort list by category now...');
-	//console.log('recreating list');
-	var list = document.getElementById('eventsList');
-	list.innerHTML = '';
-	//alert('done');
-	//console.log("@CASH: "+list);
-	//delete the list here.
-	//document.getElementById("myForm").reset();
-	//then recreate it here
-	createList(list, filterByString);			
-};
-
-//helper method that creates a <label> element and inserts it into list
-function createLabel(data, list) {
-	console.log('createLabel')
-	//create label
-	var entry = document.createElement('label');
-	entry.appendChild(document.createTextNode(data));
-	list.appendChild(entry);
-	//<label >10.11.14</label>
-};
-
-//helper method that creates a <li> element and inserts it into list
-function createItem(data, list) { 
-	//<li class="app-button" data-target="page2"></li>
-    //<li class="app-button" data-target="page2"></li>
-	var entry = document.createElement('li');
-	entry.setAttribute('class','app-button red');
-	entry.setAttribute('data-target','page2');
-	//console.log(entry.data-target);
-	entry.appendChild(document.createTextNode(data));
-	list.appendChild(entry);
-	console.log(entry)
-};
+		}
+		//this is called to transfer to the details page, pass arguments here
+		function transferToEventDetailsPage() {
+			App.load('page2', {})
+		}

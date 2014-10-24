@@ -3,10 +3,15 @@
   <head>
     <title>EventBuzz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" href="components/appjs/app.min.css">
+    <link rel="stylesheet" href="app.min.css">
+    <style>
+      /* TODO */ 
+    </style>
   </head>
 <!--BODY-->
   <body>
+	<!--Pages----------------------------------------------------------------------->
+	<!--Home-----------<Joe>----------------------------->  
     <div class="app-page" data-page="home">
       <!--Toolbar-->  
       <div class="app-topbar dark-blue">
@@ -14,74 +19,58 @@
   		<div class="app-button right" data-target="login">Login</div>
       </div>
       <!--Content-->
-	  <div class="app-content" style="background:#DAA520">
+	  <div id="cont" class="app-content" style="background:#DAA520">
 	  	<!-- Welcome Message (very top of main screen) -->
 	  	<div class="app-section">
 	  		<div class="introText" style="font-weight:bold; font-size: 24px"></div>
-	    	<!--<h2>Welcome to EventBuzz:). Browse through any of these by category or date. @#yolo</h2>-->
 	  	</div>
     	
     	<!-- Categories (mid-top section of main) -->  	
-		<div class="app-section">
-			<h3>Categories<h3>
+		<div class="app-section" style="padding:5px>
 			<ul class="app-list">
-				<li style="display:inline" class="app-button green" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick(null)" >#all</li>
-				<li style="display:inline" class="app-button orange" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('none')" >#none</li>
-				<li style="display:inline" class="app-button red" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('sports')" >#Sports</li>
-				<li style="display:inline" class="app-button green" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('infosession')" >#InfoSessions</li>
-				<li style="display:inline" class="app-button yellow" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('greek')" >#Greek</li>
-				<li style="display:inline" class="app-button blue" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('coc')" >#CoC</li>
-				<li style="display:inline" class="app-button blue" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('clergy')" >#Clergy</li>
-				<li style="display:inline" class="app-button orange" 	style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('gatech')" >#GaTech</li>
-				<li style="display:inline" class="app-button teal" 		style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('atl')" >#ATL</li>
-				<li style="display:inline" class="app-button dark-blue" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);" onClick="categoryButtonClick('merp')" >#merp</li>
+				<li 												style="display:inline; font-weight:bold; padding:0px">Categories:</li>
+				<li id = "#all" 	class="app-button white" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick(null)">			#all</li>
+				<li id = "#none" 	class="app-button white" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('')">				#none</li>
+				<li 				class="app-button red" 			style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('sports')">		#Sports</li>
+				<li 				class="app-button green" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('infosession')">	#InfoSession</li>
+				<li 				class="app-button yellow" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('greek')">			#Greek</li>
+				<li 				class="app-button blue" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('coc')">			#CoC</li>
+				<li 				class="app-button orange"	 	style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('clergy')">		#Clergy</li>
+				<li 				class="app-button teal"			style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('gatech')">		#GaTech</li>
+				<li 				class="app-button dark-blue" 	style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('atl')">			#ATL</li>
+				<li 				class="app-button red"			style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('merp')">			#merp</li>
 			</ul>
 		</div>
 		
     	<!-- NewEventsList (middle section of main) -->
-    	<div class="app-section">
-    		<div class="app-content app-scrollable" style="height: 200px; overflow: scroll;">
-				<ul id="eventsList" class="app-list">
-					<li class="app-button green" data-target="page2">ACoC</li>
-				</ul>
+    	<div class="app-section" style="background:#DAA520">
+    		<div class="app-content app-scrollable" style="height: 300px; overflow: scroll">
+				<ul id="eventsList" class="app-list"></ul>
 			</div>
 		</div>
-		
-    	<!--
-    	IMPORTANT, this list REDIRECTS correctly. BUT it is STATIC
-    	//OldEventsList//
-    	<div class="app-section">
-    		<div class="app-content app-scrollable" style="height: 500px; overflow: scroll;">
-				<ul class="app-list">
-					<label >10.11.14</label>
-         			<li class="app-button" data-target="page2">Microsof @ CoC</li>
-         			<li class="app-button" data-target="page2">CRC Hosts merp merp merp</li>
-         			<li class="app-button" data-target="page2">Archery Club orientations</li>
-         			<label>10.12.14</label>
-         			<li class="app-button" data-target="page2">mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar mar </li>
-         			<li class="app-button" data-target="page2">mar</li>
-         			<label>10.13.14</label>
-         			<li class="app-button" data-target="page2">mer</li>
-         			<li class="app-button" data-target="page2">mar</li>
-				</ul>
-			</div>
-		</div>
-		-->
+
 		<!-- Add Event Button (bottom of main)-->
 	  	<div class="app-section" style="background:#345">
         	<div class="app-button dark-blue" data-target="page2">Add an event!</div>
-	  	</div>	
+	  	</div>
+
+		
+		<!-- Footer (bottom)-->
+	  	<div id ="footer" style="background:#000000; color:#FFFFFF; font-family:courier; bottom: 0px; opacity:0.80; overflow:hidden; margin-bottom: 0%">
+			<p>#capstone4911:theBigEvent(2014)</p>
+	  	</div>
 	</div>
 	</div>
-	
-    <!--Login <Phill>-->  
+
+
+    <!--Login-----------<Phill>----------------------------->  
     <div class="app-page" data-page="login">
       <div class="app-topbar dark-blue">
         <div class="app-button left" data-back data-autotitle></div>
         <div class="app-title">Login</div>
       </div>
       <div class="app-content" style="background:#DAA520">
-        <center><img src="img/header.png" style="height = auto; max-width:100%; margin-top: 25%"></center>
+        <center><img src="header.png" style="height = auto; max-width:100%; margin-top: 25%"></center>
           <div class="app-section" style="margin-top: 25%">
             <input id="usnm" class="app-input" value = "Username: " style = "color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
             <input id="pswrd" class="app-input" value = "Password: " style = "color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
@@ -92,15 +81,62 @@
         </div>
       </div>
     </div>
-    
-	<!--Page2 <Rita>-->  
+
+
+    <!---Details Page Rita -->
+    <div class="app-page" data-page="details">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Event Details</div>
+      </div>
+      <div class="app-content">
+      		<ul class="app-list">
+	      		<li id="eventName"> 
+	          </li>
+	          <li>
+	          </li>
+	          <li>
+	          	
+	          </li>
+	          <li>
+
+	          </li>
+	         </ul>
+      </div>
+
+	<!--Page2--------------Rita------------------------>  
     <div class="app-page" data-page="page2">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>
         <div class="app-title">Event Info</div>
       </div>
       <div class="app-content">
-        Rita
+      	<form>
+	      	<ul class="app-list">
+	      	<li> Name:
+	            <input type="text" name="name">
+	        </li>
+	        <li> Date:
+	        	<input type="date" name="date">
+	        </li>
+	        <li>
+	          Time:
+	          <input type="time" name="time">
+	        </li>
+	        <li>
+	          	Category:
+	          	<input type="radio" name="category" value="sports">Sports
+	          	<input type="radio" name="category" value="infosession">Info Session
+	          	<input type="radio" name="category" value="greek">Greek
+	          	<input type="radio" name="category" value="coc">CoC
+	          	<input type="radio" name="category" value="freefood">Free Food
+	          	<input type="radio" name="category" value="ATL">ATL
+	        </li>
+	        <li>
+	          	<input type = "submit" class="app-button yellow" value="Create Event" data-target="home">
+	        </li>
+	        </ul>
+		</form> 
       </div>
     </div>
 
