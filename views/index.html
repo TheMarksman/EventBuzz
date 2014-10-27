@@ -3,15 +3,15 @@
   <head>
     <title>EventBuzz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <link rel="stylesheet" href="app.min.css">
+    <link rel="stylesheet" href="components/appjs/app.min.css">
     <style>
       /* TODO */ 
     </style>
   </head>
 <!--BODY-->
   <body>
-	<!--Pages----------------------------------------------------------------------->
-	<!--Home-----------<Joe>----------------------------->  
+	<!--Pages-->
+	<!--Home-<Joe>-->  
     <div class="app-page" data-page="home">
       <!--Toolbar-->  
       <div class="app-topbar dark-blue">
@@ -26,9 +26,9 @@
 	  	</div>
     	
     	<!-- Categories (mid-top section of main) -->  	
-		<div class="app-section" style="padding:5px>
+		<div class="app-section" style="padding:5px">
 			<ul class="app-list">
-				<li 												style="display:inline; font-weight:bold; padding:0px">Categories:</li>
+				<li style="display:inline; font-weight:bold; padding:0px">Categories:</li>
 				<li id = "#all" 	class="app-button white" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick(null)">			#all</li>
 				<li id = "#none" 	class="app-button white" 		style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('')">				#none</li>
 				<li 				class="app-button red" 			style="display:inline; -webkit-tap-highlight-color: rgba(255, 255, 255, 0)" onClick="categoryButtonClick('sports')">		#Sports</li>
@@ -63,14 +63,14 @@
 	</div>
 
 
-    <!--Login-----------<Phill>----------------------------->  
+    <!--Login-<Phil>-->  
     <div class="app-page" data-page="login">
       <div class="app-topbar dark-blue">
         <div class="app-button left" data-back data-autotitle></div>
         <div class="app-title">Login</div>
       </div>
       <div class="app-content" style="background:#DAA520">
-        <center><img src="header.png" style="height = auto; max-width:100%; margin-top: 25%"></center>
+        <center><img src="img/header.png" style="height = auto; max-width:100%; margin-top: 25%"></center>
           <div class="app-section" style="margin-top: 25%">
             <input id="usnm" class="app-input" value = "Username: " style = "color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
             <input id="pswrd" class="app-input" value = "Password: " style = "color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
@@ -104,7 +104,7 @@
 	         </ul>
       </div>
 
-	<!--Page2--------------Rita------------------------>  
+	<!--Page2-Rita-->  
     <div class="app-page" data-page="page2">
       <div class="app-topbar">
         <div class="app-button left" data-back data-autotitle></div>

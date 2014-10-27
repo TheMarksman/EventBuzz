@@ -2,13 +2,19 @@
 // with the main event (home) page.
 
 		App.controller('home', function (page, eventsObject) {
-			$(page).find('.introText').text(intro);
+			$(page).find('.introText').text('Welcome to EventBuzz');
 			$(page).on('appShow', function () {
-				console.log('page finished rendering now, start modifing...');
-				var list = document.getElementById('eventsList');
-				//this clears the list to fix the bug where navigating back to home duplicates the existing list
-				list.innerHTML = "";
-				createList(list, null);
+				Query.getAllData(function(eventsData) {
+
+					window.eventsObject = eventsData.events;
+					window.orderedArray = eventsData.order;
+
+					console.log('page finished rendering now, start modifing...');
+					var list = document.getElementById('eventsList');
+					//this clears the list to fix the bug where navigating back to home duplicates the existing list
+					list.innerHTML = "";
+					createList(list, null);
+				});
 				
 				//manually change color of #all and #none buttons, like a noob:
 				var element1 = document.getElementById('#all');
@@ -44,7 +50,7 @@
 		//creates the events list on the home page
 		function createList(list, filterBy) {
 			//first date = first event .getDate()
-			var currDate = eventObjects[orderedArray[0]].date;
+			var currDate = eventsObject[orderedArray[0]].date;
 			//create label with first date
 				//1. first, trim the time of the dates, we dont want it displayed in the label
 			var semiColonIndex = currDate.lastIndexOf(":");
@@ -54,7 +60,7 @@
 
 			for(var key in orderedArray) {
 				//current event
-				var event = eventObjects[orderedArray[key]];
+				var event = eventsObject[orderedArray[key]];
 				
 				//current date = first date
 				var eventDate = event.date;
