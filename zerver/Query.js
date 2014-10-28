@@ -1,9 +1,29 @@
 
+mysql = require('mysql');
+
 // This file runs on the server. See https://www.npmjs.org/package/zerver for details.
 // This file is responsible for handling all queries to the server from the front end.
 // Here is where the server will query the database and return the results in the callback function
 // provided by the front end.
 exports.getAllData = function (callback) {
+
+	var connection = mysql.createConnection({
+	  host     : 'db4free.net',
+	  user     : 'eventbuzz',
+	  password : 'eventbuzz',
+	  database : 'eventbuzz'
+	});
+
+	connection.connect();
+
+	connection.query('SELECT * FROM Events', function(err, rows, fields) {
+	  if (err) throw err;
+
+	  console.log(rows);
+	});
+
+	connection.end();
+
 	// TODO: REPLACE WITH DB CALL
 	var event1 = {name: "ACoC", date: "October 14, 1975 11:13", categories: {'sports': true, 'clergy': true}},
 		event2 = {name: "ACoB", date: "October 14, 1975 11:14", categories: {'sports': true, 'clergy': true}},
