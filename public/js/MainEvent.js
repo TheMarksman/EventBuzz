@@ -9,7 +9,6 @@
 					window.eventsObject = eventsData.events;
 					window.orderedArray = eventsData.order;
 
-					console.log('page finished rendering now, start modifing...');
 					var list = document.getElementById('eventsList');
 					//this clears the list to fix the bug where navigating back to home duplicates the existing list
 					list.innerHTML = "";
@@ -49,41 +48,27 @@
 		}
 		//creates the events list on the home page
 		function createList(list, filterBy) {
-			//first date = first event .getDate()
-			var currDate = eventsObject[orderedArray[0]].date;
-			//create label with first date
-				//1. first, trim the time of the dates, we dont want it displayed in the label
-			var semiColonIndex = currDate.lastIndexOf(":");
-			var newIndex = semiColonIndex - 3;
-			var finalDateString = currDate.substring(0,newIndex);
-			createLabel(finalDateString, list);
+			var currDate = eventsObject[orderedArray[0]].Date;
 
-			for(var key in orderedArray) {
+			createLabel(currDate, list);
+
+			for(key in orderedArray) {
 				//current event
 				var event = eventsObject[orderedArray[key]];
-				
-				//current date = first date
-				var eventDate = event.date;
-				
-				//if(current date != event .getDate() )				
+				var eventDate = event.Date;
+							
 				if( !(currDate === eventDate) ) {
-					//create new label for new date, but first...
-						//1. first, trim the time of the dates, we dont want it displayed in the label
-					var semiColonIndex = eventDate.lastIndexOf(":");
-					var newIndex = semiColonIndex - 3;
-					var finalDateString = eventDate.substring(0,newIndex);
-					createLabel(finalDateString, list);	
+					createLabel(currDate, list);	
 
 					//adjust currdate
 					currDate = eventDate;
 				}
 				//create list item for event
-				if(filterBy==null){
-					createItem(event.name,list);
-				}
- 				if(event.categories[filterBy]) {
+				if(filterBy == null){
+					createItem(event.EventName, list);
+				} else if(event.Category == filterBy) {
 					//(event.categories[filterBy]) 					
-					createItem(event.name,list);
+					createItem(event.EventName, list);
  				}
 			}
 		}
