@@ -17,6 +17,7 @@
       <div class="app-topbar dark-blue">
         <div class="app-title">Home</div>
   		<div class="app-button right" data-target="login">Login</div>
+  		<div class="app-button left" data-target="filter">Filter</div>
       </div>
       <!--Content-->
 	  <div id="cont" class="app-content" style="background:#DAA520">
@@ -125,15 +126,87 @@
 	        </li>
 	        <li>
 	          	Category:
-	          	<input type="radio" name="category" value="sports">Sports
-	          	<input type="radio" name="category" value="infosession">Info Session
-	          	<input type="radio" name="category" value="greek">Greek
-	          	<input type="radio" name="category" value="coc">CoC
-	          	<input type="radio" name="category" value="freefood">Free Food
-	          	<input type="radio" name="category" value="ATL">ATL
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Greek">Greek
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Sports">Sports
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Free Food">Free Food
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Nongreek Social">Nongreek Social
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Info Session">Info Session
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Study Groups">Study Groups
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Clubs">Clubs
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="College Sponsored Events">College Sponsored Events
 	        </li>
 	        <li>
 	          	<input type = "submit" class="app-button yellow" value="Create Event" data-target="home">
+	        </li>
+	        </ul>
+		</form> 
+      </div>
+    </div>
+
+    <!--Filter Page-->
+    <div class="app-page" data-page="filter">
+      <div class="app-topbar">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Filter Events</div>
+      </div>
+      <div class="app-content">
+      	<form>
+	      	<ul class="app-list">
+	      	<li> Keywords:
+	            <input type="text" name="keyword">
+	        </li>
+	        <li> Date:
+	        	<input type="date" name="date">
+	        </li>
+	        <li>
+	          Time:
+	          <input type="time" name="time">
+	        </li>
+	        <li>
+	          	Category:
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Greek">Greek
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Sports">Sports
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Free Food">Free Food
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Nongreek Social">Nongreek Social
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Info Session">Info Session
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Study Groups">Study Groups
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="Clubs">Clubs
+	        </li>
+	        <li>
+	          	<input type="radio" name="category" value="College Sponsored Events">College Sponsored Events
+	        </li>
+	        <li>
+	          	<input type ="submit" class="app-button yellow" value="Filter Events" data-target="home">
 	        </li>
 	        </ul>
 		</form> 
