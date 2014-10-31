@@ -86,24 +86,25 @@
 
     <!---Details Page Rita -->
     <div class="app-page" data-page="details">
-      <div class="app-topbar">
+      <div class="app-topbar dark-blue">
         <div class="app-button left" data-back data-autotitle></div>
         <div class="app-title">Event Details</div>
       </div>
-      <div class="app-content">
+      <div class="app-content" style="background:#DAA520">
+        <div class="app-section">
       		<ul class="app-list">
-	      		<li id="eventName"> 
-	          </li>
-	          <li>
-	          </li>
-	          <li>
-	          	
-	          </li>
-	          <li>
+	      	  <li class="eventName"></li>
+	          <li class="eventDate"></li>
+	          <li class="eventTime"></li>
+	          <li class="eventCategory"></li>
+			</ul>
+		</div>
+		<div class="app-section">
+			<div class="eventDescription"></div>
+		</div>
+	  </div>
+    </div>
 
-	          </li>
-	         </ul>
-      </div>
 
 	<!--Page2-Rita-->  
     <div class="app-page" data-page="page2">
@@ -152,7 +153,7 @@
 	          	<input type="radio" name="category" value="College Sponsored Events">College Sponsored Events
 	        </li>
 	        <li>
-	          	<input type = "submit" class="app-button yellow" value="Create Event" data-target="home">
+	          	<input type = "submit" class="app-button yellow" value="Create Event" onClick="createEvent" data-target="home">
 	        </li>
 	        </ul>
 		</form> 
@@ -217,6 +218,7 @@
     <script src="components/appjs/zepto.js"></script>
     <script src="components/appjs/app.min.js"></script>
     <script src="components/lodash.js"></script>
+    <script src="components/momentjs/moment.js"></script>
     <script src="../zerver/Query.js"></script>
     <script src="js/MainEvent.js"></script>
     <script src="js/Login.js"></script>

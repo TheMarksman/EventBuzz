@@ -31,7 +31,7 @@ exports.getAllData = function (callback) {
 	  	
 
 	  	key = date.format('YYYYMMDD') + ' ' + rows[i].Time + ' ' + rows[i].EventName;
-		rows[i].Date = date.format('MMMM Do YYYY');
+		rows[i].Date = date.format('MMMM D YYYY');
 
 	  	events[key] = rows[i];
 

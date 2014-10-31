@@ -38,12 +38,14 @@
 			list.appendChild(entry);
 		}
 		//helper method that creates a <li> element and inserts it into list
-		function createItem(data, list) { 
+		function createItem(namedata, event, list) {			
 			var entry = document.createElement('li');
 			entry.setAttribute('class','app-button red');
-			entry.setAttribute('data-target','page2');
-			entry.setAttribute("onClick","transferToEventDetailsPage()");
-			entry.appendChild(document.createTextNode(data));
+			//entry.type = "button"
+			entry.addEventListener('click', function(){
+				transferToEventDetailsPage(namedata, event);
+			});
+			entry.appendChild(document.createTextNode(namedata));
 			list.appendChild(entry);
 		}
 		//creates the events list on the home page
@@ -65,14 +67,16 @@
 				}
 				//create list item for event
 				if(filterBy == null){
-					createItem(event.EventName, list);
+					createItem(event.EventName, event, list);
 				} else if(event.Category == filterBy) {
 					//(event.categories[filterBy]) 					
-					createItem(event.EventName, list);
+					createItem(event.EventName, event, list);
  				}
 			}
 		}
-		//this is called to transfer to the details page, pass arguments here
-		function transferToEventDetailsPage() {
-			App.load('page2', {})
+				//this is called to transfer to the details page, pass arguments here
+		function transferToEventDetailsPage(namedata, event) {
+			var ritaObject = {"eventName": namedata, "event": event};
+			App.load('details', ritaObject) //pass in here
+			console.log("Name: " + namedata);
 		}
