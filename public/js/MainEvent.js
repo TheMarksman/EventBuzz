@@ -89,6 +89,6 @@
 			//App.load('home', newEventObjectContainer) //pass in here
 			//App.load('home'); //pass in here
 			App.back('home');
-			alert("fake back?");
+			//alert("fake back?");
 			//console.log("Done filtering");
 		}
