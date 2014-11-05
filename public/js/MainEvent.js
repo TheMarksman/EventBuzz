@@ -2,6 +2,7 @@
 // with the main event (home) page.
 
 		App.controller('home', function (page, eventsObject) {
+			//alert("opening home page");
 			$(page).find('.introText').text('Welcome to EventBuzz');
 			$(page).on('appShow', function () {
 				Query.getAllData(function(eventsData) {
@@ -79,4 +80,15 @@
 			var ritaObject = {"eventName": namedata, "event": event};
 			App.load('details', ritaObject) //pass in here
 			console.log("Name: " + namedata);
+		}
+		
+		function transferHomeFromFilter() {
+			//alert("insert sql stuff here");
+			//create a new eventsObject containing filtered data
+			//var newEventObjectContainer = {"allEvents": "temp"};
+			//App.load('home', newEventObjectContainer) //pass in here
+			//App.load('home'); //pass in here
+			App.back('home');
+			alert("fake back?");
+			//console.log("Done filtering");
 		}
