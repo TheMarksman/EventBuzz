@@ -1,8 +1,34 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.app-button {
+	cursor: pointer;
 }
 
-a {
-  color: #00B7FF;
+.introText {
+	font-weight: bold; 
+	font-size: 24px;
+}
+
+.hashtag {
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	display: inline; 
+	font-weight: bold;
+}
+
+.categories-header {
+	display: inline; 
+	font-weight: bold; 
+	padding: 0px;
+}
+
+.categories {
+	padding: 5px;
+}
+
+#footer {
+	background: #000000; 
+	color: #FFFFFF; 
+	font-family: courier; 
+	bottom: 0px; 
+	opacity: 0.80; 
+	overflow: hidden; 
+	margin-bottom: 0%;
 }
