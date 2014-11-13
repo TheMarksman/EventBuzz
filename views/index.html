@@ -115,44 +115,44 @@
       	<form>
 	      	<ul class="app-list">
 	      	<li> Name:
-	            <input type="text" name="name">
+	            <input id="inputName" type="text" name="name">
 	        </li>
 	        <li> Date:
-	        	<input type="date" name="date">
+	        	<input id="inputDate" type="date" name="date">
 	        </li>
 	        <li>
 	          Time:
-	          <input type="time" name="time">
+	          <input id="inputTime" type="time" name="time">
 	        </li>
 	        <li>
 	          	Category:
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Greek">Greek
+	          	<input id="inputGreek" type="checkbox" name="category" value="Greek">Greek
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Sports">Sports
+	          	<input id="inputSports" type="checkbox" name="category" value="Sports">Sports
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Free Food">Free Food
+	          	<input id="inputFreeFood" type="checkbox" name="category" value="Free Food">Free Food
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Nongreek Social">Nongreek Social
+	          	<input id="inputNonGreekSocial" type="checkbox" name="category" value="Nongreek Social">Nongreek Social
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Info Session">Info Session
+	          	<input id="inputInfoSession" type="checkbox" name="category" value="Info Session">Info Session
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Study Groups">Study Groups
+	          	<input id="inputStudyGroup" type="checkbox" name="category" value="Study Groups">Study Groups
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="Clubs">Clubs
+	          	<input id="inputClubs" type="checkbox" name="category" value="Clubs">Clubs
 	        </li>
 	        <li>
-	          	<input type="radio" name="category" value="College Sponsored Events">College Sponsored Events
+	          	<input id="inputCollegeSponsoredEvents" type="checkbox" name="category" value="College Sponsored Events">College Sponsored Events
 	        </li>
 	        <li>
-	          	<input type = "submit" class="app-button dark-blue" value="Create Event" onClick="createEvent" data-target="home">
+	          	<input type="submit" class="app-button dark-blue" value="Create Event" onClick="createEvent()" data-target="home">
 	        </li>
 	        </ul>
 		</form>
@@ -174,14 +174,14 @@
 			        <li>Date: <input type="date" name="date"></li>
 			        <li>Time: <input type="time" name="time"></li>
 			        <!--<li>Category:</li>-->
-			        <li><input type="checkbox" name="category" value="Greek">						Greek</li>
-			        <li><input type="checkbox" name="category" value="Sports">						Sports</li>
-			        <li><input type="checkbox" name="category" value="Free Food">					Free Food</li>
-			        <li><input type="checkbox" name="category" value="Nongreek Social">				Nongreek Social</li>
-			        <li><input type="checkbox" name="category" value="Info Session">				Info Session</li>
-			        <li><input type="checkbox" name="category" value="Study Groups">				Study Groups</li>
-			        <li><input type="checkbox" name="category" value="Clubs">						Clubs</li>
-			        <li><input type="checkbox" name="category" value="College Sponsored Events">	College Sponsored Events</li>
+			        <li><input type="checkbox" name="category" value="Greek">Greek</li>
+			        <li><input type="checkbox" name="category" value="Sports">Sports</li>
+			        <li><input type="checkbox" name="category" value="Free Food">Free Food</li>
+			        <li><input type="checkbox" name="category" value="Nongreek Social">Nongreek Social</li>
+			        <li><input type="checkbox" name="category" value="Info Session">Info Session</li>
+			        <li><input type="checkbox" name="category" value="Study Groups">Study Groups</li>
+			        <li><input type="checkbox" name="category" value="Clubs">Clubs</li>
+			        <li><input type="checkbox" name="category" value="College Sponsored Events">College Sponsored Events</li>
 		        </ul>
 			</form> 
 	  	</div>
