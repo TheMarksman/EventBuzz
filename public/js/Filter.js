@@ -5,12 +5,12 @@ App.controller('filter', function (page) {
 	$(page).on('appShow', function () {
 		//update the data upon entering filter
 		Query.getAllData(function(eventsData) {
-			window.eventsObjectFilter = eventsData.events;		//here, bad
-			window.orderedArrayFilter = eventsData.order;		//here, bad
+			window.eventsObject = eventsData.events;
+			window.orderedArray = eventsData.order;
 		});
-		//console.log("On filter boot, I find this: ");
-		console.log(window.orderedArray);
+		console.log("On filter boot, I find this: ");
 		console.log(window.eventsObject);
+		console.log(window.orderedArray);
 	});
 });
 
@@ -68,6 +68,17 @@ function transferHomeFromFilter() {
     var keywordMatchesCounter = 0
     var keywordMatchesHolder = [];
     //////////////////////////////
+    
+    
+    //edge case
+    //user has pressed filter, but has not selected any of the options
+    if( (categoriesCheckedOffByUser.length==0) & (formkeyword.length==0) ){
+    	//solution: just go back for now
+    	//alert("nothing selected");
+    	App.back(function () {});
+    	return;
+    }
+    
     
     //begin the main loop
     //here, run through all the objects in the data, add them to the new structure if they match filter criteria
@@ -190,6 +201,7 @@ function transferHomeFromFilter() {
 	//////////////////////////////////////////////////////////////////////
 	
 	//Navigate back to the main page, first set the flag to notify homepage of incoming filtered data
+	//alert("ending filer function");
 	window.filterFlag = true;
 	App.back(function () {});
 	//alert("transferToHomeFromFilter");

@@ -115,6 +115,7 @@ function createList(list, filterBy) {
 	//let us know something is wrong
 	catch(err) {
 		alert("error while creating list, fix lata");
+		alert(err);
 	}
 }
 
