@@ -26,7 +26,7 @@
 	  	</div>
     	
     	<!-- Categories (mid-top section of main) -->  	
-		<div class="app-section categories">
+		<div class="app-section" style="padding:5px">
 			<ul class="app-list">
 				<li class="categories-header">Categories:</li>
 				<li id = "#all" class="app-button white hashtag" onClick="categoryButtonClick(null)">#all</li>
@@ -170,18 +170,18 @@
       	<div class="app-section">
 	      	<form>
 		      	<ul class="app-list">
-			      	<li>Keywords: <input type="text" name="keyword" style="width:50%"></li>       <!-- TODO: Make these inputs span the whole row. -->
-			        <li>Date: <input type="date" name="date"></li>
+			      	<li>Keywords: <input id="filterkeyword" type="text" name="keyword" style="width:50%"></li>       <!-- TODO: Make these inputs span the whole row. -->
+			        <li>Date: <input id="filterdate" type="date" name="date"></li>
 			        <li>Time: <input type="time" name="time"></li>
 			        <!--<li>Category:</li>-->
-			        <li><input type="checkbox" name="category" value="Greek">Greek</li>
-			        <li><input type="checkbox" name="category" value="Sports">Sports</li>
-			        <li><input type="checkbox" name="category" value="Free Food">Free Food</li>
-			        <li><input type="checkbox" name="category" value="Nongreek Social">Nongreek Social</li>
-			        <li><input type="checkbox" name="category" value="Info Session">Info Session</li>
-			        <li><input type="checkbox" name="category" value="Study Groups">Study Groups</li>
-			        <li><input type="checkbox" name="category" value="Clubs">Clubs</li>
-			        <li><input type="checkbox" name="category" value="College Sponsored Events">College Sponsored Events</li>
+			        <li><input id="filterGreek" type="checkbox" name="category" value="Greek">Greek</li>
+			        <li><input id="filterSports" type="checkbox" name="category" value="Sports">Sports</li>
+			        <li><input id="filterFood" type="checkbox" name="category" value="Free Food">Free Food</li>
+			        <li><input id="filterNonG" type="checkbox" name="category" value="Nongreek Social">Nongreek Social</li>
+			        <li><input id="filterInfoS"	type="checkbox" name="category" value="Info Session">Info Session</li>
+			        <li><input id="filterStudy" type="checkbox" name="category" value="Study Groups">Study Groups</li>
+			        <li><input id="filterClub" type="checkbox" name="category" value="Clubs">Clubs</li>
+			        <li><input id="filterColl" type="checkbox" name="category" value="College Sponsored Events">College Sponsored Events</li>
 		        </ul>
 			</form> 
 	  	</div>
@@ -200,5 +200,6 @@
     <script src="js/MainEvent.js"></script>
     <script src="js/Login.js"></script>
     <script src="js/EventDetails.js"></script>
+    <script src="js/Filter.js"></script>
   </body>
 </html>
