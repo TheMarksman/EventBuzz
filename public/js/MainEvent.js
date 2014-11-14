@@ -90,19 +90,27 @@ function createItem(namedata, event, list) {
 function createList(list, filterBy) {
 	//this method breaks sometimes because of formating inconsistencies
 	try{
+		//create the first date label
 		var currDate = eventsObject[orderedArray[0]].Date;
 		createLabel(currDate, list);
+		
+		//for every event in the object
 		for(key in orderedArray) {
 			//current event
 			var event = eventsObject[orderedArray[key]];
 			var eventDate = event.Date;
-						
+			
+			//alert("curr: "+currDate);
+			//alert("eventDate: "+eventDate);
+			
+			//create the label only if: 
 			if( !(currDate === eventDate) ) {
-				createLabel(currDate, list);	
-	
+				createLabel(eventDate, list);	
+				
 				//adjust currdate
 				currDate = eventDate;
 			}
+			
 			//create list item for event
 			if(filterBy == null){
 				createItem(event.EventName, event, list);
@@ -110,11 +118,12 @@ function createList(list, filterBy) {
 				//(event.categories[filterBy]) 					
 				createItem(event.EventName, event, list);
 			}
+			//alert("next event");
 		}
 	}
 	//let us know something is wrong
 	catch(err) {
-		alert("error while creating list, fix lata");
+		alert("error while creating list, fix lata, blame joe.");
 		alert(err);
 	}
 }
