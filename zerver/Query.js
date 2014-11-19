@@ -47,3 +47,40 @@ exports.getAllData = function (callback) {
 
 	connection.end();
 };
+
+exports.createTheEvent = function(eventData) {
+
+	var insertionData = {
+		EventName: eventData.name,
+		Creator: eventData.creator,
+		Host: eventData.host,
+		Date: eventData.date,
+		Time: eventData.time,
+		Location: eventData.location,
+		Category: eventData.categories,
+		Description: eventData.description
+	};
+
+	var connection = mysql.createConnection({
+	  host     : 'db4free.net',
+	  user     : 'eventbuzz',
+	  password : 'eventbuzz',
+	  database : 'eventbuzz'
+	});
+
+	connection.connect(function(err) {
+		if (err) {
+			console.error('error connecting: ' + err.stack);
+			return;
+		}
+
+		console.log('connected as id ' + connection.threadId);
+	});
+
+	connection.query('INSERT INTO Events ?', insertionData, function(err, result) {
+		if (err) {
+			console.error('error with query: ' + err.stack);
+		}
+	});
+
+};

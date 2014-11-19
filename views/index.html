@@ -121,8 +121,20 @@
 	        	<input id="inputDate" type="date" name="date">
 	        </li>
 	        <li>
-	          Time:
-	          <input id="inputTime" type="time" name="time">
+	          	Time:
+	          	<input id="inputTime" type="time" name="time">
+	        </li>
+	        <li>
+	        	Host:
+	        	<input id="inputHost" type="text" name="host">
+	        </li>
+	        <li>
+	        	Location:
+	        	<input id="inputLocation" type="text" name="location">
+	        </li>
+	        <li>
+	        	Description:
+	        	<textarea id="inputDescription" name="description"></textarea>
 	        </li>
 	        <li>
 	          	Category:
@@ -152,7 +164,7 @@
 	          	<input id="inputCollegeSponsoredEvents" type="checkbox" name="category" value="College Sponsored Events">College Sponsored Events
 	        </li>
 	        <li>
-	          	<input type="submit" class="app-button dark-blue" value="Create Event" onClick="createEvent()" data-target="home">
+	          	<input type="submit" class="app-button dark-blue" value="Create Event" onClick="addEventToDatabase()" data-target="home">
 	        </li>
 	        </ul>
 		</form>
@@ -198,6 +210,7 @@
     <script src="components/momentjs/moment.js"></script>
     <script src="../zerver/Query.js"></script>
     <script src="js/MainEvent.js"></script>
+    <script src="js/EventCreation.js"></script>
     <script src="js/Login.js"></script>
     <script src="js/EventDetails.js"></script>
     <script src="js/Filter.js"></script>

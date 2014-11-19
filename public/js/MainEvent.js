@@ -4,27 +4,16 @@
 App.controller('home', function (page, eventsObject) {
 	//insert welcome message into the page
 	$(page).find('.introText').text('Welcome to EventBuzz:).');
-	
-	//console.log("Do I have an object yet?:");		//console.log(eventsObject);
+
 	$(page).on('appShow', function () {
-		if(window.filterFlag==true) {
-			//alert("incoming filtered data");
+
+		if(window.filterFlag) {
 			var list = document.getElementById('eventsList');
-			//clear the list, prep for new stuff
 			list.innerHTML = "";
 			
-			//DEBUG: This is where the new data is:
-			//console.log(window.eventsObject);
-			//console.log(window.orderedArray);
-			
-			//now create the list with it
 			createList(list, null)
-			//alert("finishedfilteredloading");
 		}
 		else {
-			//alert("firsttimeloadingHOME");
-			//alert("is the flag set?:"+window.filterFlag);
-			
 			//because the flag is not set, query DB and dump everything in
 			Query.getAllData(function(eventsData) {
 				window.eventsObject = eventsData.events;
@@ -37,7 +26,6 @@ App.controller('home', function (page, eventsObject) {
 				//dump all data into the homepage
 				createList(list, null);
 			});
-			//alert("finishedloadingfirsttime");
 		}	
 			
 		//manually change color of #all and #none buttons, like a noob:
@@ -114,7 +102,7 @@ function createList(list, filterBy) {
 	}
 	//let us know something is wrong
 	catch(err) {
-		alert("error while creating list, fix lata");
+		alert("error while creating list, fix data");
 		alert(err);
 	}
 }
@@ -123,5 +111,4 @@ function createList(list, filterBy) {
 function transferToEventDetailsPage(namedata, event) {
 	var ritaObject = {"eventName": namedata, "event": event};
 	App.load('details', ritaObject) //pass in here
-	console.log("Name: " + namedata);
 }
