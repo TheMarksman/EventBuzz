@@ -20,52 +20,66 @@ function addEventToDatabase() {
 		isInfoSession = $('#inputInfoSession').is(':checked'),
 		isStudyGroup = $('#inputStudyGroup').is(':checked'),
 		isClubs = $('#inputClubs').is(':checked'),
-		isCollegeSponsoredEvents = $('#inputCollegeSponsoredEvents').is(':checked');
+		isCollegeSponsoredEvents = $('#inputCollegeSponsoredEvents').is(':checked'),
+		isOther = $('#inputOther').is(':checked');
 
-	var categories = [];
+	var categories = "";
 
-	if (isGreek) {
-		categories.push('Greek');
+	if (isFreeFood) {
+		categories = categories + 'Free Food ';
 	}
 
 	if (isSports) {
-		categories.push('Sports');
+		categories = categories + 'Sports ';
 	}
 
-	if (isFreeFood) {
-		categories.push('Free Food');
-	}
-
-	if (isNonGreekSocial) {
-		categories.push('Nongreek Social');
-	}
-
-	if (isInfoSession) {
-		categories.push('Info Session');
+	if (isGreek) {
+		categories = categories + 'Greek ';
 	}
 
 	if (isStudyGroup) {
-		categories.push('Study Group');
+		categories = categories + 'Study Groups ';
 	}
 
 	if (isClubs) {
-		categories.push('Clubs');
+		categories = categories + 'Clubs ';
 	}
 
 	if (isCollegeSponsoredEvents) {
-		categories.push('College Sponsored Events');
+		categories = categories + 'College Sponsored Events ';
 	}
+
+	if (isInfoSession) {
+		categories = categories + 'Info Sessions ';
+	}
+
+	if (isNonGreekSocial) {
+		categories = categories + 'Nongreek Social ';
+	}
+
+	if (isOther) {
+		categories = categories + 'Other ';
+	}
+
+	categories.trim();
+
+	var formatDate = moment(date),
+		formatTime = moment(time, 'HH:mm');
+
+	var formattedDate = formatDate.format('YYYY-MM-DD'),
+		formattedTime = formatTime.format('HH:mm:ss');
+
 
 	// Until we add users, creator is GT
 	var eventData = {
 		'name': name,
-		'date': date,
-		'time': time,
+		'date': formattedDate,
+		'time': formattedTime,
 		'creator': 'GT',
 		'host': host,
 		'location': location,
 		'description': description,
-		'categories': categories
+		'categories': categories.trim()
 	};
 
 	Query.createTheEvent(eventData);

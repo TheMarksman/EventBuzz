@@ -17,7 +17,7 @@ exports.getAllData = function (callback) {
 
 	connection.connect();
 
-	connection.query('SELECT * FROM Events ORDER BY Date, Time ASC', function(err, rows, fields) {
+	connection.query('SELECT * FROM Event ORDER BY Date, Time ASC', function(err, rows, fields) {
 	  if (err) throw err;
 
 	  var events = {},
@@ -49,16 +49,15 @@ exports.getAllData = function (callback) {
 };
 
 exports.createTheEvent = function(eventData) {
-
 	var insertionData = {
-		EventName: eventData.name,
-		Creator: eventData.creator,
-		Host: eventData.host,
-		Date: eventData.date,
-		Time: eventData.time,
-		Location: eventData.location,
-		Category: eventData.categories,
-		Description: eventData.description
+		'EventName': eventData.name,
+		'Creator': eventData.creator,
+		'Host': eventData.host,
+		'Date': eventData.date,
+		'Time': eventData.time,
+		'Location': eventData.location,
+		'Category': eventData.categories,
+		'Description': eventData.description
 	};
 
 	var connection = mysql.createConnection({
@@ -77,7 +76,7 @@ exports.createTheEvent = function(eventData) {
 		console.log('connected as id ' + connection.threadId);
 	});
 
-	connection.query('INSERT INTO Events ?', insertionData, function(err, result) {
+	connection.query('INSERT INTO Event ?', insertionData, function(err, result) {
 		if (err) {
 			console.error('error with query: ' + err.stack);
 		}
