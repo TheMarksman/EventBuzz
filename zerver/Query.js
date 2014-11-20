@@ -76,10 +76,12 @@ exports.createTheEvent = function(eventData) {
 		console.log('connected as id ' + connection.threadId);
 	});
 
-	connection.query('INSERT INTO Event ?', insertionData, function(err, result) {
+	connection.query('INSERT INTO Event SET ?', insertionData, function(err, result) {
 		if (err) {
 			console.error('error with query: ' + err.stack);
 		}
 	});
+
+	connection.end();
 
 };
