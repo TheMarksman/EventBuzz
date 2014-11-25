@@ -153,7 +153,7 @@ function transferHomeFromFilter() {
 		//alert(formtime + " " + eventTime);
 		if(formtime === eventTime) {
 			//for all matches found: add current event to the new events object here
-			alert("Matched a time: " + key + " with " + eventTime);
+			//alert("Matched a time: " + key + " with " + eventTime);
 			timeMatchesCounter++;
 			timeMatchesHolder.push(event.EventName);
 			newEventsObject[key] = event;
