@@ -11,6 +11,10 @@ App.controller('details', function (page, eventObject) {
 			$(page).find('.eventTime').text("Time: " + timeOfEvent);
 			$(page).find('.eventCategory').text("Category: " + selectedEvent.Category);
 			$(page).find('.eventDescription').text("Description: " + selectedEvent.Description);
+			$(page).find('.eventLocation').text("Location: " + selectedEvent.Location);
+			$(page).find('.eventHost').text("Host: " + selectedEvent.Host);
+
+			
 
 			/*
 			var catcount = 0;

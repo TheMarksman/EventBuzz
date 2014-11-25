@@ -94,6 +94,8 @@
 	      	  <li class="eventName" style="font-weight:bold"></li>
 	          <li class="eventDate" style="font-weight:bold"></li>
 	          <li class="eventTime" style="font-weight:bold"></li>
+	          <li class="eventLocation" style="font-weight:bold"></li>
+	          <li class="eventHost" style="font-weight:bold"></li>	          
 	          <li class="eventCategory" style="font-weight:bold"></li>
 			</ul>
 		</div>
@@ -183,11 +185,11 @@
       </div>
       <div class="app-content" style="background:#DAA520">
       	<div class="app-section">
-	      	<form>
+	      	<form id="filterform">
 		      	<ul class="app-list">
 			      	<li>Keywords: <input id="filterkeyword" type="text" name="keyword" style="width:50%"></li>       <!-- TODO: Make these inputs span the whole row. -->
 			        <li>Date: <input id="filterdate" type="date" name="date"></li>
-			        <li>Time: <input type="time" name="time"></li>
+			        <li>Time: <input id="filtertime" type="time" name="time"></li>
 			        <!--<li>Category:</li>-->
 			        <li><input id="filterGreek" type="checkbox" name="category" value="Greek">Greek</li>
 			        <li><input id="filterSports" type="checkbox" name="category" value="Sports">Sports</li>
@@ -210,6 +212,7 @@
     <script src="components/appjs/zepto.js"></script>
     <script src="components/appjs/app.min.js"></script>
     <script src="components/lodash.js"></script>
+    <script src="components/crossfilter.js"></script>
     <script src="components/momentjs/moment.js"></script>
     <script src="../zerver/Query.js"></script>
     <script src="js/MainEvent.js"></script>

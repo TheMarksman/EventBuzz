@@ -65,7 +65,7 @@ function createLabel(data, list) {
 //helper method that creates a <li> element and inserts it into list
 function createItem(namedata, event, list) {			
 	var entry = document.createElement('li');
-	entry.setAttribute('class','app-button red');
+	entry.setAttribute('class','app-button blue');
 	//entry.type = "button"
 	entry.addEventListener('click', function(){
 		transferToEventDetailsPage(namedata, event);
