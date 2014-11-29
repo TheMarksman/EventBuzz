@@ -3,7 +3,7 @@
 //HomePage controller
 App.controller('home', function (page, eventsObject) {
 	//insert welcome message into the page
-	$(page).find('.introText').text('Welcome to EventBuzz:)!. Here, you can browse and filter campus events.');
+	$(page).find('.introText').text('Welcome to EventBuzz! Here, you can browse and filter campus events:).');
 
 	$(page).on('appShow', function () {
 
@@ -102,7 +102,10 @@ function createList(list, filterBy) {
 			//create list item for event
 			if(filterBy == null){
 				createItem(event.EventName, event, list);
-			} 
+			}
+			else if(filterBy == "") {
+				//nothing
+			}
 			//else if(event.Category == filterBy) {
 			else if(event.Category.indexOf(filterBy)!=-1) {
 				//(event.categories[filterBy]) 					
