@@ -83,7 +83,17 @@ function transferHomeFromFilter() {
     //alert(categoriesCheckedOffByUser.length + formkeyword.length + formdate + formtime);
     if( (categoriesCheckedOffByUser.length==0) & (formkeyword.length==0) & (formdate === "") & (formtime === "") ){
     	//solution: just go back for now
-    	alert("Nothing was selected!");
+    	//alert("Nothing was selected!");
+    	App.dialog({
+		  title        : 'Filter Error',
+		  text         : 'Nothing was selected! Try again.',
+		  //okButton     : 'Try Again',
+		  cancelButton : 'Try Again'
+		}, function (tryAgain) {
+		  if (tryAgain) {
+			// try again
+		  }
+		});
     	//App.back(function () {});
     	//window.scrollTo(-400,-400);
     	return;
@@ -240,7 +250,7 @@ function transferHomeFromFilter() {
 // 		newEventsObject[key] = event;
 // 	  	newOrderedArray.push(key);
 // 	}
- 	alert("donefiltering, now start checking for duplicates");	
+ 	//alert("donefiltering, now start checking for duplicates");	
 	var newnewEventsObject = {};
 	var newnewOrderedArray = [];
 	for(var iii = 0; iii < orderedArray.length; iii++) {
@@ -280,7 +290,17 @@ function transferHomeFromFilter() {
     //ending conditions
     if(newOrderedArray.length == 0) {
     	//alert(newOrderedArray.length);
-    	alert("No matching results after filtering!");
+    	//alert("No matching results after filtering!");
+    	App.dialog({
+		  title        : 'Filter Error',
+		  text         : 'No matching results after filtering! Try again.',
+		  //okButton     : 'Try Again',
+		  cancelButton : 'Try Again'
+		}, function (tryAgain) {
+		  if (tryAgain) {
+			// try again
+		  }
+		});
     	//App.back(function () {});
     	clearform();
     	//window.scrollTo(-400,-400);
