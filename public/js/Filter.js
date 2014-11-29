@@ -85,14 +85,14 @@ function transferHomeFromFilter() {
     	//solution: just go back for now
     	alert("Nothing was selected!");
     	//App.back(function () {});
-    	window.scrollTo(-400,-400);
+    	//window.scrollTo(-400,-400);
     	return;
     }
     
     
     //begin the main loop
     //here, run through all the objects in the data, add them to the new structure if they match filter criteria
-	for (var i = 0; i < orderedArray.length; i++) {
+	for(var i = 0; i < orderedArray.length; i++) {
 	    var key = orderedArray[i]; 			//console.log("key: "+ key);
 	    var event = eventsObject[key];		//console.log("event: " + event);
 	    
@@ -240,8 +240,22 @@ function transferHomeFromFilter() {
 // 		newEventsObject[key] = event;
 // 	  	newOrderedArray.push(key);
 // 	}
-// 	alert("done");	
+ 	alert("donefiltering, now start checking for duplicates");	
+	var newnewEventsObject = {};
+	var newnewOrderedArray = [];
+	for(var iii = 0; iii < orderedArray.length; iii++) {
+		var newkey = orderedArray[iii];				//console.log("key: "+ key);
+	    var newevent = eventsObject[newkey];		//console.log("event: " + event);
+		if(newEventsObject[newkey] != null) {
+			//alert(newkey);
+			newnewEventsObject[newkey] = newevent;
+			newnewOrderedArray.push(newkey);
+		}
+	}
 	
+	//this fixes a bug where multiple matches throughout filtering creates duplicate event entries
+	newEventsObject = newnewEventsObject;
+	newOrderedArray = newnewOrderedArray;
 	
 	//////////////////////////////////////////////////////////////////////		
 	//Debug statements for the filter feature:
@@ -254,12 +268,12 @@ function transferHomeFromFilter() {
 	
 	//////////////////////////////////////////////////////////////////////
 	//Debug statements for the transfer of this data to the main page
-	//console.log("\the stuff in this window");
-	//console.log(window.eventsObject);
-	//console.log(window.orderedArray);
-	//console.log("\the stuff i just created");
-	//console.log(newEventsObject);
-	//console.log(newOrderedArray);
+	console.log("\the stuff in this window");
+	console.log(window.eventsObject);
+	console.log(window.orderedArray);
+	console.log("\the stuff i just created");
+	console.log(newEventsObject);
+	console.log(newOrderedArray);
 	//////////////////////////////////////////////////////////////////////
 
     
@@ -269,7 +283,7 @@ function transferHomeFromFilter() {
     	alert("No matching results after filtering!");
     	//App.back(function () {});
     	clearform();
-    	window.scrollTo(-400,-400);
+    	//window.scrollTo(-400,-400);
     	//$(page).scrollTop(0);
     	return;
     }
