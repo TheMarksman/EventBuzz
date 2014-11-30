@@ -48,6 +48,49 @@ exports.getAllData = function (callback) {
 	connection.end();
 };
 
+//Disregard for now. Query intended for use with logged-in account RSVP'd event callback.
+exports.getProfileData = function (callback) {
+
+	var connection = mysql.createConnection({
+	  host     : 'db4free.net',
+	  user     : 'eventbuzz',
+	  password : 'eventbuzz',
+	  database : 'eventbuzz'
+	});
+
+	connection.connect();
+
+	connection.query('SELECT * FROM Event e INNER JOIN Reservation r ON r.EventID = e.ID AND r.Username = "doglover"', function(err, rows, fields) {
+	  if (err) throw err;
+
+	  var events = {},
+	  	  order = [],
+	  	  eventsData = {},
+	  	  key;
+
+	  for (i = 0; i < rows.length; i++) {
+	  	// Create keys for events data
+	  	date = moment(rows[i].Date);
+	  	
+
+	  	key = date.format('YYYYMMDD') + ' ' + rows[i].Time + ' ' + rows[i].EventName;
+		rows[i].Date = date.format('MMMM D YYYY');
+
+	  	events[key] = rows[i];
+
+	  	// Pass along order of events
+	  	order.push(key);
+	  };
+
+	  eventsData.events = events;
+	  eventsData.order = order;
+
+	  callback(eventsData);
+	});
+
+	connection.end();
+};
+
 exports.createTheEvent = function(eventData) {
 	var insertionData = {
 		'EventName': eventData.name,
