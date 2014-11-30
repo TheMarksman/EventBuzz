@@ -9,34 +9,29 @@ App.controller('profile', function (page, profileObject)
 	$(page).on('appShow', function () 
 	{
 		//Query the database for the current user's objects
-		
-		var curr = Query.getProfileData(window.username,function(eventsData)){};
+
 		
 		//testing statements:
-		console.log("After loading profile, we have: ");
-		console.log(verify);
+		//console.log("After loading profile, we have: ");
+		//console.log(verify);
 
 		//See if the arguments of the current user's objects are null.
-		if(curr.size = 0) {
 
-			// var list = document.getElementById('profileList');
-			// list.innerHTML = "";
-			// createList(list, null)
-			
-			//In the case that they are, create hard-coded event that says "No events have been RSVP'd"
-
-			alert("You don't have any RSVP'd events!");
-			
-		} 
-		//otherwise, populate the list with that user's RSVP'd events
-		else {
-			Query.getProfileData(window.username,function(eventsData) {
+			Query.getProfileData(window.username,function(hasEvents,eventsData) {
+				if(hasEvents){
 				window.profileObject = eventsData.events;
 				window.orderedArray = eventsData.order;
 				var list = document.getElementById('profileList');
 				list.innerHTML = "";
-				createList(list, null);
+				createList(list, null);}
+				else
+				{
+					App.dialog({
+        			title        : 'You have no reserved events.',
+        			okButton : 'OK'
+      				});
+				}
 			});
-		}	
+			
 	});
 });		

@@ -57,6 +57,8 @@ exports.getProfileData = function (username, callback) {
 	  database : 'eventbuzz'
 	});
 
+
+
 	connection.connect();
 
 	connection.query('SELECT * FROM Event e INNER JOIN Reservation r ON r.EventID = e.ID AND r.Username = ?', [username], function(err, rows, fields) {
@@ -65,7 +67,15 @@ exports.getProfileData = function (username, callback) {
 	  var events = {},
 	  	  order = [],
 	  	  eventsData = {},
-	  	  key;
+	  	  key,
+	  	  hasEvents = true;
+
+	  if(rows.length == 0)
+	  {
+	  	hasEvents = false;
+	  	callback(hasEvents,eventsData);
+	  	return;
+	  }
 
 	  for (i = 0; i < rows.length; i++) {
 	  	// Create keys for events data
@@ -84,7 +94,7 @@ exports.getProfileData = function (username, callback) {
 	  eventsData.events = events;
 	  eventsData.order = order;
 
-	  callback(eventsData);
+	  callback(hasEvents,eventsData);
 	});
 
 	connection.end();
