@@ -16,6 +16,7 @@
       <div class="app-topbar dark-blue">
         <div class="app-title">Home</div>
   		<div class="app-button right" data-target="login">Login</div>
+  		<div class="app-button right extra-margin" data-target="profile">Profile</div>
   		<div class="app-button left" data-target="filter">Filter</div>
       </div>
       <!--Content-->
@@ -65,20 +66,43 @@
 
     <!--Login -->  
 	<div class="app-page" data-page="login">
-      <div class="app-topbar dark-blue">
-        <div class="app-button left" data-back data-autotitle></div>
-        <div class="app-title">Login</div>
-      </div>
-      <div class="app-content" style="background:#DAA520">
-      	<div class="app-section" style="background:#DAA520"><center><img src="img/header.png" style="max-width:100%"></center></div>
-        <div class="app-section" style="background:#DAA520">
-       		<input id="usnm" class="app-input" value = "Username: " style="background:#E5E2E2; color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
-        	<input id="pswrd" class="app-input" value = "Password: " style="background:#E5E2E2; color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
-        	<div class = "app-section" style="background:#345">
-        		<div class="app-button dark-blue" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
-        	</div>
+    	<div class="app-topbar dark-blue">
+        	<div class="app-button left" data-back data-autotitle></div>
+       
+        	<div class="app-title">Login</div>
         </div>
-      </div>
+      		<div class="app-content" style="background:#DAA520">
+      			<div class="app-section" style="background:#DAA520"><center><img src="img/header.png" style="max-width:100%"></center></div>
+        			<div class="app-section" style="background:#DAA520">
+       					<input id="usnm" class="app-input" value = "Username: " style="background:#E5E2E2; color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
+        				<input id="pswrd" class="app-input" value = "Password: " style="background:#E5E2E2; color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
+        					<div class = "app-section" style="background:#345">
+        						<div class="app-button dark-blue" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
+        					</div>
+        			</div>
+      		</div>
+		</div>
+	</div>
+
+	<!--Profile -->  
+	<div class="app-page" data-page="profile">
+    	<div class="app-topbar dark-blue">
+        	<div class="app-button left" data-back data-autotitle></div>
+       
+        	<div class="app-title">Profile</div>
+        </div>
+      		<div class="app-content" style="background:#DAA520">
+      			<div class="app-section" style="background:#DAA520"><center><img src="img/header.png" style="max-width:100%"></center>
+      			</div>
+        			<div class="app-section" style="background:#DAA520">
+        				<div class="app-section" style="background:#DAA520">
+    						<div class="app-content app-scrollable" style="height: 300px; overflow: scroll">
+								<ul id="profileList" class="app-list"></ul>
+							</div>
+						</div>
+        			</div>
+      		</div>
+		</div>
 	</div>
 
 
@@ -249,5 +273,6 @@
     <script src="js/Login.js"></script>
     <script src="js/EventDetails.js"></script>
     <script src="js/Filter.js"></script>
+    <script src="js/Profile.js"></script>
   </body>
 </html>
