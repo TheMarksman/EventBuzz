@@ -89,5 +89,5 @@ function addEventToDatabase() {
 		'categories': categories.trim()
 	};
 
-	//Query.createTheEvent(eventData);
+	Query.createTheEvent(eventData);
 };
