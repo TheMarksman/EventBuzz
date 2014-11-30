@@ -3,9 +3,25 @@ App.controller('login', function (page) {
 	//put stuff here
 });
 
-function generateCredentials(username,password) {
-	var credentials = [username, password];
-	return credentials;
+function checkCredentials(username, password) {
+	var credentials = {};
+
+  credentials.username = username;
+  credentials.password = password;
+
+	
+  Query.checkLogin(credentials, function(isValid) {
+    if (isValid) {
+      console.log("Valid login!");
+    } else {
+      App.dialog({
+        title        : 'Invalid Login',
+        text         : 'The Username and Password provided were invalid.',
+        cancelButton : 'Try Again'
+      });
+      App.load('login');
+    }
+  });
 }
 function inputFocus(i) {
   if (i.value == i.defaultValue) { 

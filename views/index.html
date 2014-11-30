@@ -77,7 +77,7 @@
        					<input id="usnm" class="app-input" value = "Username: " style="background:#E5E2E2; color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
         				<input id="pswrd" class="app-input" value = "Password: " style="background:#E5E2E2; color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
         					<div class = "app-section" style="background:#345">
-        						<div class="app-button dark-blue" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
+        						<div class="app-button dark-blue" onclick = "checkCredentials(usnm.value,pswrd.value)">Sign in</div>
         					</div>
         			</div>
       		</div>
@@ -265,7 +265,6 @@
     <script src="components/appjs/zepto.js"></script>
     <script src="components/appjs/app.min.js"></script>
     <script src="components/lodash.js"></script>
-    <script src="components/crossfilter.js"></script>
     <script src="components/momentjs/moment.js"></script>
     <script src="../zerver/Query.js"></script>
     <script src="js/MainEvent.js"></script>

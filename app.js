@@ -7,7 +7,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var passport = require('passport');
 
 var routes = require('./routes/index');
 
@@ -18,7 +17,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
-// app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -26,14 +24,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({secret: '498f99f3bbee4ae3a075eada02488464', saveUninitialized: true}));
-app.use(passport.initialize());
-// persistent login sessions
-app.use(passport.session());
-
-console.log('app.js');
-console.log(passport);
 app.use(zerver.middleware(__dirname));
 
 app.use('/', routes);
