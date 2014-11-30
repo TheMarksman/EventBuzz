@@ -6,6 +6,16 @@ App.controller('home', function (page, eventsObject) {
 	$(page).find('.introText').text('Welcome to EventBuzz! Here, you can browse and filter campus events:).');
 
 	$(page).on('appShow', function () {
+		// Checks for a logged in user
+		if (window.username) {
+			$('.login-button').css('display', 'none');
+			$('.logout-button').css('display', 'inline');
+      		$('.profile-button').css('display', 'inline');
+		} else {
+      		$('.profile-button').css('display', 'none');
+			$('.logout-button').css('display', 'none');
+			$('.login-button').css('display', 'inline');
+		}
 
 		if(window.filterFlag) {
 			var list = document.getElementById('eventsList');
@@ -125,4 +135,9 @@ function createList(list, filterBy) {
 function transferToEventDetailsPage(namedata, event) {
 	var ritaObject = {"eventName": namedata, "event": event};
 	App.load('details', ritaObject) //pass in here
+}
+
+function logout() {
+  window.username = undefined;
+  App.load('home');
 }

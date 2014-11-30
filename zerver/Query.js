@@ -48,7 +48,7 @@ exports.getAllData = function (callback) {
 };
 
 //Disregard for now. Query intended for use with logged-in account RSVP'd event callback.
-exports.getProfileData = function (callback) {
+exports.getProfileData = function (username, callback) {
 
 	var connection = mysql.createConnection({
 	  host     : 'db4free.net',
@@ -59,7 +59,7 @@ exports.getProfileData = function (callback) {
 
 	connection.connect();
 
-	connection.query('SELECT * FROM Event e INNER JOIN Reservation r ON r.EventID = e.ID AND r.Username = "doglover"', function(err, rows, fields) {
+	connection.query('SELECT * FROM Event e INNER JOIN Reservation r ON r.EventID = e.ID AND r.Username = ?', [username], function(err, rows, fields) {
 	  if (err) throw err;
 
 	  var events = {},

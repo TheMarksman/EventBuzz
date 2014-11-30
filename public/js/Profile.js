@@ -5,18 +5,19 @@ App.controller('profile', function (page, profileObject)
 	//Query.getProfileData() uses a hard-coded user (doglover) to prove successful test queries. Once an actively 
 	//logged in username is stored within the application, the hard-coded user will be replaced with the variable
 	//representing user storage.
+
 	$(page).on('appShow', function () 
 	{
 		//Query the database for the current user's objects
 		
-		var verify = 5;
+		var curr[] = Query.getProfileData(window.username,function(eventsData)){};
 		
 		//testing statements:
 		console.log("After loading profile, we have: ");
 		console.log(verify);
 
 		//See if the arguments of the current user's objects are null.
-		if(verify == null) {
+		if(curr.size = 0) {
 
 			// var list = document.getElementById('profileList');
 			// list.innerHTML = "";
@@ -29,7 +30,7 @@ App.controller('profile', function (page, profileObject)
 		} 
 		//otherwise, populate the list with that user's RSVP'd events
 		else {
-			Query.getProfileData(function(eventsData) {
+			Query.getProfileData(window.username,function(eventsData) {
 				window.profileObject = eventsData.events;
 				window.orderedArray = eventsData.order;
 				var list = document.getElementById('profileList');

@@ -37,6 +37,19 @@
 	margin-right: 60px;
 }
 
+<<<<<<< HEAD
 .extra-margin-left{
 	margin-left: 60px;
+=======
+.profile-button {
+	display: none;
+}
+
+.login-button {
+	display: inline;
+}
+
+.logout-button {
+	display: none;
+>>>>>>> 80a5619050e28c5e4120aa2e86fcf8e76508f6ab
 }
