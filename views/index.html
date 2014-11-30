@@ -16,9 +16,10 @@
       <div class="app-topbar dark-blue">
         <div class="app-title">Home</div>
   		<div class="app-button right" data-target="login">Login</div>
+  		<div class= "app-button">Logout</div>
   		<div class="app-button right extra-margin" data-target="profile">Profile</div>
-  		<div class="app-button left" data-target="filter">Filter</div>
-      </div>
+  		<div class="app-button left extra-margin-left" data-target="filter">Filter</div>
+  	  </div>
       <!--Content-->
 	  <div id="cont" class="app-content" style="background:#DAA520;">
 	  	<!-- Welcome Message (very top of main screen) -->
@@ -79,6 +80,7 @@
         					<div class = "app-section" style="background:#345">
         						<div class="app-button dark-blue" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
         					</div>
+        					<div class="app-button dark-blue" data-target="account-creation">Create Account</div>
         			</div>
       		</div>
 		</div>
@@ -104,6 +106,41 @@
       		</div>
 		</div>
 	</div>
+
+
+	<!--Account Creation-->
+	<div class="app-page" data-page="account-creation">
+      <div class="app-topbar dark-blue">
+        <div class="app-button left" data-back data-autotitle></div>
+        <div class="app-title">Welcome!</div>
+      </div>
+      <div class="app-content" style="background:#DAA520">
+        <div class="app-section">
+      	<form>
+	      	<ul class="app-list">
+	      	<li> Username:
+	            <input id="inputUsnm" type="text" name="Username">
+	        </li>
+	        <li> Email:
+	        	<input id="inputEmail" type="text" name="Email">
+	        </li>
+	        <li>
+	          	Password:
+	          	<input id="inputPass" type="password" name="Password">
+	        </li>
+	        <li>
+	        	Password (Confirm):
+	        	<input id="inputPass2" type="password" name="Password2">
+	        </li>
+	        
+	        </ul>
+		</form>
+	  </div>
+	  <div class="app-section" style="background:#345">
+	  	    <div class="app-button dark-blue" data-target="home">Create Account!</div>
+	  </div>
+      </div>
+    </div>
 
 
     <!---Details Page -->
@@ -156,7 +193,7 @@
 			<div style="font-weight:bold; color:#494949">Description: </div>
 			<div style="color:#494949" class="eventDescription"></div>
 		</div>
-		<div class="app-section">
+		<div class="app-section" style="background: #3C7">
         	<div class="app-button green">RSVP for this event!</div>
         </div>
 	  </div>

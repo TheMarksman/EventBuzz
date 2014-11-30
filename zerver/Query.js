@@ -59,7 +59,7 @@ exports.getProfileData = function (callback) {
 
 	connection.connect();
 
-	connection.query('SELECT * FROM Event e INNER JOIN Reservation r ON r.EventID = e.ID AND r.Username = "doglove"', function(err, rows, fields) {
+	connection.query('SELECT * FROM Event e INNER JOIN Reservation r ON r.EventID = e.ID AND r.Username = "doglover"', function(err, rows, fields) {
 	  if (err) throw err;
 
 	  var events = {},
