@@ -6,9 +6,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var passport = require('passport');
 
 var routes = require('./routes/index');
-var users = require('./routes/user');
 
 var app = express();
 
@@ -20,15 +21,22 @@ app.engine('html', require('ejs').renderFile);
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(zerver.middleware(__dirname));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({secret: '498f99f3bbee4ae3a075eada02488464', saveUninitialized: true}));
+app.use(passport.initialize());
+// persistent login sessions
+app.use(passport.session());
+
+console.log('app.js');
+console.log(passport);
+app.use(zerver.middleware(__dirname));
+
 app.use('/', routes);
-app.use('/users', users);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
