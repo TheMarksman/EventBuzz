@@ -27,41 +27,47 @@ function addEventToDatabase() {
 	var categories = "";
 
 	if (isFreeFood) {
-		categories = categories + 'Free Food ';
+		categories = categories + 'Free Food, ';
 	}
 
 	if (isSports) {
-		categories = categories + 'Sports ';
+		categories = categories + 'Sports, ';
 	}
 
 	if (isGreek) {
-		categories = categories + 'Greek ';
+		categories = categories + 'Greek, ';
 	}
 
 	if (isStudyGroup) {
-		categories = categories + 'Study Groups ';
+		categories = categories + 'Study Groups, ';
 	}
 
 	if (isClubs) {
-		categories = categories + 'Clubs ';
+		categories = categories + 'Clubs, ';
 	}
 
 	if (isCollegeSponsoredEvents) {
-		categories = categories + 'College Sponsored Events ';
+		categories = categories + 'College Sponsored Events, ';
 	}
 
 	if (isInfoSession) {
-		categories = categories + 'Info Sessions ';
+		categories = categories + 'Info Sessions, ';
 	}
 
 	if (isNonGreekSocial) {
-		categories = categories + 'Nongreek Social ';
+		categories = categories + 'Nongreek Social, ';
 	}
 
 	if (isOther) {
-		categories = categories + 'Other ';
+		categories = categories + 'Other';
 	}
 
+	//categories.trim();
+	//alert(categories);
+	if(categories.charAt(categories.length - 2) === ",") { 
+		//alert("ending with a comma");
+		categories = categories.substr(0,categories.length-2);
+	}
 	categories.trim();
 
 	var formatDate = moment(date),
@@ -88,6 +94,24 @@ function addEventToDatabase() {
 		'description': description,
 		'categories': categories.trim()
 	};
-
+	
+	//////////////////////////////////////////////////////
+	//Debug
+	//alert(eventData);
+	//alert(eventData.name + "\n" + eventData.date + "\n" + 
+	//	eventData.time + "\n" + eventData.creator + "\n" + eventData.host + "\n" + 
+	//		eventData.location + "\n" + eventData.description + "\n" + eventData.categories + "\n");
+	//////////////////////////////////////////////////////
 	Query.createTheEvent(eventData);
+	//alert("created event!");
+	App.dialog({
+		  title        : 'Success',
+		  text         : 'Successfully created event!',
+		  okButton     : 'Ok',
+		  //cancelButton : 'Try Again'
+	}, function (tryAgain) {
+		  if (tryAgain) {
+			// try again
+		  }
+	});
 };
