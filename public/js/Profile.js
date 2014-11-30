@@ -10,7 +10,7 @@ App.controller('profile', function (page, profileObject)
 	{
 		//Query the database for the current user's objects
 		
-		var curr[] = Query.getProfileData(window.username,function(eventsData)){};
+		var curr = Query.getProfileData(window.username,function(eventsData)){};
 		
 		//testing statements:
 		console.log("After loading profile, we have: ");
