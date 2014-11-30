@@ -3,7 +3,7 @@
 //HomePage controller
 App.controller('home', function (page, eventsObject) {
 	//insert welcome message into the page
-	$(page).find('.introText').text('Welcome to EventBuzz:).');
+	$(page).find('.introText').text('Welcome to EventBuzz! Here, you can browse and filter campus events:).');
 
 	$(page).on('appShow', function () {
 
@@ -65,7 +65,7 @@ function createLabel(data, list) {
 //helper method that creates a <li> element and inserts it into list
 function createItem(namedata, event, list) {			
 	var entry = document.createElement('li');
-	entry.setAttribute('class','app-button red');
+	entry.setAttribute('class','app-button blue');
 	//entry.type = "button"
 	entry.addEventListener('click', function(){
 		transferToEventDetailsPage(namedata, event);
@@ -102,7 +102,12 @@ function createList(list, filterBy) {
 			//create list item for event
 			if(filterBy == null){
 				createItem(event.EventName, event, list);
-			} else if(event.Category == filterBy) {
+			}
+			else if(filterBy == "") {
+				//nothing
+			}
+			//else if(event.Category == filterBy) {
+			else if(event.Category.indexOf(filterBy)!=-1) {
 				//(event.categories[filterBy]) 					
 				createItem(event.EventName, event, list);
 			}
@@ -111,7 +116,7 @@ function createList(list, filterBy) {
 	}
 	//let us know something is wrong
 	catch(err) {
-		alert("error while creating list, fix data");
+		alert("Error while display list. Please reload:/");
 		alert(err);
 	}
 }

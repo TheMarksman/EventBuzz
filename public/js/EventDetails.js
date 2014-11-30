@@ -6,11 +6,15 @@ App.controller('details', function (page, eventObject) {
 
 			var timeOfEvent = timeOfEvent.format('h:mm A');
 
-			$(page).find('.eventName').text("Name: " + nameOfEvent);
-			$(page).find('.eventDate').text("Date: " + selectedEvent.Date);
-			$(page).find('.eventTime').text("Time: " + timeOfEvent);
-			$(page).find('.eventCategory').text("Category: " + selectedEvent.Category);
-			$(page).find('.eventDescription').text("Description: " + selectedEvent.Description);
+			$(page).find('.eventName').text(nameOfEvent);
+			$(page).find('.eventDate').text(selectedEvent.Date);
+			$(page).find('.eventTime').text(timeOfEvent);
+			$(page).find('.eventCategory').text(selectedEvent.Category);
+			$(page).find('.eventDescription').text(selectedEvent.Description);
+			$(page).find('.eventLocation').text(selectedEvent.Location);
+			$(page).find('.eventHost').text(selectedEvent.Host);
+
+			
 
 			/*
 			var catcount = 0;

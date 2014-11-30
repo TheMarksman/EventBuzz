@@ -16,6 +16,7 @@
       <div class="app-topbar dark-blue">
         <div class="app-title">Home</div>
   		<div class="app-button right" data-target="login">Login</div>
+  		<div class="app-button right extra-margin" data-target="profile">Profile</div>
   		<div class="app-button left" data-target="filter">Filter</div>
       </div>
       <!--Content-->
@@ -65,20 +66,43 @@
 
     <!--Login -->  
 	<div class="app-page" data-page="login">
-      <div class="app-topbar dark-blue">
-        <div class="app-button left" data-back data-autotitle></div>
-        <div class="app-title">Login</div>
-      </div>
-      <div class="app-content" style="background:#DAA520">
-      	<div class="app-section" style="background:#DAA520"><center><img src="img/header.png" style="max-width:100%"></center></div>
-        <div class="app-section" style="background:#DAA520">
-       		<input id="usnm" class="app-input" value = "Username: " style="background:#E5E2E2; color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
-        	<input id="pswrd" class="app-input" value = "Password: " style="background:#E5E2E2; color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
-        	<div class = "app-section" style="background:#345">
-        		<div class="app-button dark-blue" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
-        	</div>
+    	<div class="app-topbar dark-blue">
+        	<div class="app-button left" data-back data-autotitle></div>
+       
+        	<div class="app-title">Login</div>
         </div>
-      </div>
+      		<div class="app-content" style="background:#DAA520">
+      			<div class="app-section" style="background:#DAA520"><center><img src="img/header.png" style="max-width:100%"></center></div>
+        			<div class="app-section" style="background:#DAA520">
+       					<input id="usnm" class="app-input" value = "Username: " style="background:#E5E2E2; color: gray" onfocus="inputFocus(this)" onblur="inputBlur(this)">
+        				<input id="pswrd" class="app-input" value = "Password: " style="background:#E5E2E2; color: gray" onfocus="passwordFocus(this)" onblur="inputBlur(this)">
+        					<div class = "app-section" style="background:#345">
+        						<div class="app-button dark-blue" data-target="home" onclick = "generateCredentials(usnm.value,pswrd.value)">Sign in</div>
+        					</div>
+        			</div>
+      		</div>
+		</div>
+	</div>
+
+	<!--Profile -->  
+	<div class="app-page" data-page="profile">
+    	<div class="app-topbar dark-blue">
+        	<div class="app-button left" data-back data-autotitle></div>
+       
+        	<div class="app-title">Profile</div>
+        </div>
+      		<div class="app-content" style="background:#DAA520">
+      			<div class="app-section" style="background:#DAA520"><center><img src="img/header.png" style="max-width:100%"></center>
+      			</div>
+        			<div class="app-section" style="background:#DAA520">
+        				<div class="app-section" style="background:#DAA520; font-weight:bold; font-style:italic;">RSVP'd events:
+    						<div class="app-content app-scrollable" style="height: 300px; overflow: scroll">
+								<ul id="profileList" class="app-list"></ul>
+							</div>
+						</div>
+        			</div>
+      		</div>
+		</div>
 	</div>
 
 
@@ -90,15 +114,46 @@
       </div>
       <div class="app-content" style="background:#DAA520">
         <div class="app-section">
+      		<!--
       		<ul class="app-list">
 	      	  <li class="eventName" style="font-weight:bold"></li>
 	          <li class="eventDate" style="font-weight:bold"></li>
 	          <li class="eventTime" style="font-weight:bold"></li>
+	          <li class="eventLocation" style="font-weight:bold"></li>
+	          <li class="eventHost" style="font-weight:bold"></li>	          
 	          <li class="eventCategory" style="font-weight:bold"></li>
 			</ul>
+			--!>
+			<table style="color:#494949">
+				<tr>
+					<td style="font-weight:bold">Name: </td>
+					<td class="eventName" style="padding-left:5px">das</td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Date: </td>
+					<td class="eventDate" style="padding-left:5px">das</td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Time: </td>
+					<td class="eventTime" style="padding-left:5px"></td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Location: </td>
+					<td class="eventLocation" style="padding-left:5px"></td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Host: </td>
+					<td class="eventHost" style="padding-left:5px"></td>
+				</tr>
+				<tr>
+					<td style="font-weight:bold">Category: </td>
+					<td class="eventCategory" style="padding-left:5px"></td>
+				</tr>
+			</table>
 		</div>
 		<div class="app-section">
-			<div class="eventDescription"></div>
+			<div style="font-weight:bold; color:#494949">Description: </div>
+			<div style="color:#494949" class="eventDescription"></div>
 		</div>
 	  </div>
     </div>
@@ -108,7 +163,7 @@
     <div class="app-page" data-page="event-creation">
       <div class="app-topbar dark-blue">
         <div class="app-button left" data-back data-autotitle></div>
-        <div class="app-title">Event Info</div>
+        <div class="app-title">Create an Event</div>
       </div>
       <div class="app-content" style="background:#DAA520">
         <div class="app-section">
@@ -166,11 +221,11 @@
 	       	<li>
 	          	<input id="inputOther" type="checkbox" name="category" value="Other">Other
 	        </li>
-	        <li>
-	          	<input type="submit" class="app-button dark-blue" value="Create Event" onClick="addEventToDatabase()" data-target="home">
-	        </li>
 	        </ul>
 		</form>
+	  </div>
+	  <div class="app-section" style="background:#345">
+	  	    <div class="app-button dark-blue" onClick="addEventToDatabase()" data-target="home">Create Event</div>
 	  </div>
       </div>
     </div>
@@ -183,11 +238,11 @@
       </div>
       <div class="app-content" style="background:#DAA520">
       	<div class="app-section">
-	      	<form>
+	      	<form id="filterform">
 		      	<ul class="app-list">
 			      	<li>Keywords: <input id="filterkeyword" type="text" name="keyword" style="width:50%"></li>       <!-- TODO: Make these inputs span the whole row. -->
 			        <li>Date: <input id="filterdate" type="date" name="date"></li>
-			        <li>Time: <input type="time" name="time"></li>
+			        <li>Time: <input id="filtertime" type="time" name="time"></li>
 			        <!--<li>Category:</li>-->
 			        <li><input id="filterGreek" type="checkbox" name="category" value="Greek">Greek</li>
 			        <li><input id="filterSports" type="checkbox" name="category" value="Sports">Sports</li>
@@ -210,6 +265,7 @@
     <script src="components/appjs/zepto.js"></script>
     <script src="components/appjs/app.min.js"></script>
     <script src="components/lodash.js"></script>
+    <script src="components/crossfilter.js"></script>
     <script src="components/momentjs/moment.js"></script>
     <script src="../zerver/Query.js"></script>
     <script src="js/MainEvent.js"></script>
@@ -217,5 +273,6 @@
     <script src="js/Login.js"></script>
     <script src="js/EventDetails.js"></script>
     <script src="js/Filter.js"></script>
+    <script src="js/Profile.js"></script>
   </body>
 </html>

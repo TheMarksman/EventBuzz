@@ -7,7 +7,8 @@ App.controller('event-creation', function(page) {
 
 function addEventToDatabase() {
 	var name = $('#inputName').val(),
-	    date = new Date($('#inputDate').val()),
+	    //date = new Date($('#inputDate').val()),							//this has an off by one error
+	    date = new Date( ($('#inputDate').val()) + " 00:00"),				//this is better
 	    time = $('#inputTime').val(),
 	    host = $('#inputHost').val(),
 	    location = $('#inputLocation').val(),
@@ -68,7 +69,13 @@ function addEventToDatabase() {
 
 	var formattedDate = formatDate.format('YYYY-MM-DD'),
 		formattedTime = formatTime.format('HH:mm:ss');
-
+	
+	////////////////////////////////////////////////
+	//Debug Statements
+	//alert("formdate: " + $('#inputDate').val());
+	//alert("convdate: " + date);
+	//alert("formatted: " + formattedDate);
+	////////////////////////////////////////////////
 
 	// Until we add users, creator is GT
 	var eventData = {

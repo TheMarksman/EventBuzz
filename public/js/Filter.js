@@ -21,10 +21,15 @@ function transferHomeFromFilter() {
 	//holder structures
 	var newEventsObject = {};
 	var newOrderedArray = [];
+	var allEventsArray =  [];
 	
 	//pull the information fom the form
     var formkeyword =	document.getElementById('filterkeyword').value;
     var formdate =		document.getElementById('filterdate').value;
+    var formtime =		document.getElementById('filtertime').value;
+    if(formtime != "") {
+    	formtime = formtime.concat(":00");
+    }
     var categGreek =	document.getElementById("filterGreek").checked;
     var categSports =	document.getElementById("filterSports").checked;
     var categFood =		document.getElementById("filterFood").checked;
@@ -67,24 +72,42 @@ function transferHomeFromFilter() {
     var categoryMatchesHolder = [];
     var keywordMatchesCounter = 0
     var keywordMatchesHolder = [];
+    var dateMatchesCounter = 0
+    var dateMatchesHolder = [];
+    var timeMatchesCounter = 0
+    var timeMatchesHolder = [];
     //////////////////////////////
-    
-    
+        
     //edge case
     //user has pressed filter, but has not selected any of the options
-    if( (categoriesCheckedOffByUser.length==0) & (formkeyword.length==0) ){
+    //alert(categoriesCheckedOffByUser.length + formkeyword.length + formdate + formtime);
+    if( (categoriesCheckedOffByUser.length==0) & (formkeyword.length==0) & (formdate === "") & (formtime === "") ){
     	//solution: just go back for now
-    	//alert("nothing selected");
-    	App.back(function () {});
+    	//alert("Nothing was selected!");
+    	App.dialog({
+		  title        : 'Filter Error',
+		  text         : 'Nothing was selected! Try again.',
+		  //okButton     : 'Try Again',
+		  cancelButton : 'Try Again'
+		}, function (tryAgain) {
+		  if (tryAgain) {
+			// try again
+		  }
+		});
+    	//App.back(function () {});
+    	//window.scrollTo(-400,-400);
     	return;
     }
     
     
     //begin the main loop
     //here, run through all the objects in the data, add them to the new structure if they match filter criteria
-	for (var i = 0; i < orderedArray.length; i++) {
+	for(var i = 0; i < orderedArray.length; i++) {
 	    var key = orderedArray[i]; 			//console.log("key: "+ key);
 	    var event = eventsObject[key];		//console.log("event: " + event);
+	    
+	    //create allEventsArray
+	    allEventsArray.push(event);
 	    
 	    //now you have individual keys and events, begin parsing filters
 	    
@@ -115,14 +138,40 @@ function transferHomeFromFilter() {
 
 		//next parse and filter by: Date
 	    //pull the entered date from the form
-	    var eventDate = event.Date;				console.log(eventDate);
-	    											//console.log(formdate);
+	    //form date var def above = formdate;
+	    var eventDate = event.Date;				
+	    //console.log("eventDate: "+eventDate);
+	    //console.log("formDate: "+formdate);
+	    //alert("eventdate: " + eventDate + "\n" + "formdate: " + formdate);
+	    //alert("eventdate: " + eventDate);
+	    var stringformdate = conv(formdate);
+	    if(stringformdate === eventDate) {
+	    	//for all matches found: add current event to the new events object here
+	    	//alert("Matched a date: " + key);
+	    	dateMatchesCounter++;
+	    	dateMatchesHolder.push(event.EventName);
+	    	newEventsObject[key] = event;
+		    newOrderedArray.push(key);
+	    }
+	    
+	    
 	    //next parse and filter by: Time
 	    //pull the entered time from the form
 	    var eventTime = event.Time;
+	    //alert(eventTime);
+		//formtime = formtime.concat(":00");
+		//alert(formtime + " " + eventTime);
+		if(formtime === eventTime) {
+			//for all matches found: add current event to the new events object here
+			//alert("Matched a time: " + key + " with " + eventTime);
+			timeMatchesCounter++;
+			timeMatchesHolder.push(event.EventName);
+			newEventsObject[key] = event;
+			newOrderedArray.push(key);
+		}
 
 	    //next parse and filter by: Categories
-	    											//alert("categories checked: "+categGreek + categSports + categFood + categNonG + categInfoS + categStudy + categClub + categColl)  
+	    //alert("categories checked: "+categGreek + categSports + categFood + categNonG + categInfoS + categStudy + categClub + categColl)  
 	    //grab the categories stored in the current event object
 	    var thiseventscategories = event.Category.toLowerCase().trim();
 //manual conversions here, fix lata
@@ -168,6 +217,55 @@ function transferHomeFromFilter() {
 	    }
 	}
 	
+// 	//begin time parsing
+// 	//var eventTime = event.Time;
+// 	formtime = formtime.concat(":00");
+// 	alert(formtime);
+// 	var filterobj = crossfilter(allEventsArray);
+// 	var lengthoffilterobj = filterobj.groupAll().reduceCount().value();
+// 	//var IDsum = filterobj.groupAll().reduceSum(function(event) { return event.ID; }).value();
+// 		
+// 	var time_Dimension = filterobj.dimension(function(d) { return d.Time; });
+// 	time_Dimension.filter(formtime);
+// 	//typeDimension.filterRange("15:00:00","15:00:00");
+// 	var count_time_Dimension = time_Dimension.group().reduceCount();
+// 	var size = count_time_Dimension.size();
+// 	var listOfRelevant = time_Dimension.top(size);
+// 	var numFinRecs = listOfRelevant.length;
+// 	alert("total: " + numFinRecs);
+// 	//alert("filterobj: "+filterobj);
+// 	//alert("IDsum: "+IDsum);
+// 	alert("listOfRelevant: "+listOfRelevant);
+// 	alert(listOfRelevant[0].EventName + " " + listOfRelevant[0].Time);
+// 	//alert(listOfRelevant[1].EventName);
+// 	//alert(listOfRelevant[2].EventName);
+// 	//alert(a[3].EventName);
+// 	//alert("lengthofobj: "+ size);
+// 	
+// 	for(var i = 0; i< numFinRecs; i++) {
+// 		//for all matches found: add current event to the new events object here
+// 		alert("Matched a time: " + listOfRelevant[i].EventName + " with " + listOfRelevant[i].Time);
+// 	   	timeMatchesCounter++;
+//  		timeMatchesHolder.push(event.EventName);
+// 		newEventsObject[key] = event;
+// 	  	newOrderedArray.push(key);
+// 	}
+ 	//alert("donefiltering, now start checking for duplicates");	
+	var newnewEventsObject = {};
+	var newnewOrderedArray = [];
+	for(var iii = 0; iii < orderedArray.length; iii++) {
+		var newkey = orderedArray[iii];				//console.log("key: "+ key);
+	    var newevent = eventsObject[newkey];		//console.log("event: " + event);
+		if(newEventsObject[newkey] != null) {
+			//alert(newkey);
+			newnewEventsObject[newkey] = newevent;
+			newnewOrderedArray.push(newkey);
+		}
+	}
+	
+	//this fixes a bug where multiple matches throughout filtering creates duplicate event entries
+	newEventsObject = newnewEventsObject;
+	newOrderedArray = newnewOrderedArray;
 	
 	//////////////////////////////////////////////////////////////////////		
 	//Debug statements for the filter feature:
@@ -180,14 +278,35 @@ function transferHomeFromFilter() {
 	
 	//////////////////////////////////////////////////////////////////////
 	//Debug statements for the transfer of this data to the main page
-	//console.log("\the stuff in this window");
-	//console.log(window.eventsObject);
-	//console.log(window.orderedArray);
-	//console.log("\the stuff i just created");
-	//console.log(newEventsObject);
-	//console.log(newOrderedArray);
+	console.log("\the stuff in this window");
+	console.log(window.eventsObject);
+	console.log(window.orderedArray);
+	console.log("\the stuff i just created");
+	console.log(newEventsObject);
+	console.log(newOrderedArray);
 	//////////////////////////////////////////////////////////////////////
 
+    
+    //ending conditions
+    if(newOrderedArray.length == 0) {
+    	//alert(newOrderedArray.length);
+    	//alert("No matching results after filtering!");
+    	App.dialog({
+		  title        : 'Filter Error',
+		  text         : 'No matching results after filtering! Try again.',
+		  //okButton     : 'Try Again',
+		  cancelButton : 'Try Again'
+		}, function (tryAgain) {
+		  if (tryAgain) {
+			// try again
+		  }
+		});
+    	//App.back(function () {});
+    	clearform();
+    	//window.scrollTo(-400,-400);
+    	//$(page).scrollTop(0);
+    	return;
+    }
     
 	//NOW: update the eventsObject stored in the page to reflect the filter changes
 	window.eventsObject = newEventsObject;
@@ -205,4 +324,46 @@ function transferHomeFromFilter() {
 	window.filterFlag = true;
 	App.back(function () {});
 	//alert("transferToHomeFromFilter");
+}
+
+//string format conversion
+function conv(formdate) {
+	//ex. turn this: 2014-10-27
+		//into this: October 27 2014
+	var d = new Date(formdate + " 00:00"); 	//the "00:00" fixes a browser dependent bug
+	var month = d.toDateString().slice(4,7);
+		//alert(month);
+	var everythingElse = d.toDateString().slice(7);
+		//alert(everythingElse);
+		//alert(everythingElse.charAt(1));
+		//alert("this is what im comparing:" + month + "Nov" +"??");
+		//edge case
+		if(everythingElse.charAt(1)==='0') {
+			//alert("SPECIAL");
+			everythingElse = everythingElse.slice(2);
+			//alert(everythingElse);
+			var space = " ";
+			everythingElse = space.concat(everythingElse);
+		}
+	var newMonth = "";
+	if(month === "Jan") { newMonth = "January"};
+	if(month === "Feb") { newMonth = "February"};
+	if(month === "Mar") { newMonth = "March"};
+	if(month === "Apr") { newMonth = "April"};
+	if(month === "May") { newMonth = "May"};
+	if(month === "Jun") { newMonth = "June"};
+	if(month === "Jul") { newMonth = "July"};
+	if(month === "Aug") { newMonth = "August"};
+	if(month === "Sep") { newMonth = "September"};
+	if(month === "Oct") { newMonth = "October"};
+	if(month === "Nov") {newMonth = "November"};
+	if(month === "Dec") { newMonth = "December"};
+	
+	newMonth = newMonth + everythingElse;
+	//alert("Done:" + newMonth+"?");
+	return newMonth;
+}
+
+function clearform() {
+	document.getElementById("filterform").reset();
 }
