@@ -1,4 +1,3 @@
-
 mysql = require('mysql');
 moment = require('moment');
 
@@ -122,6 +121,43 @@ exports.createTheEvent = function(eventData) {
 	connection.query('INSERT INTO Event SET ?', insertionData, function(err, result) {
 		if (err) {
 			console.error('error with query: ' + err.stack);
+		}
+	});
+
+	connection.end();
+
+};
+
+exports.checkLogin = function(credentials, callback) {
+	var username = credentials.username;
+	var password = credentials.password;
+
+	var connection = mysql.createConnection({
+	  host     : 'db4free.net',
+	  user     : 'eventbuzz',
+	  password : 'eventbuzz',
+	  database : 'eventbuzz'
+	});
+
+	connection.connect(function(err) {
+		if (err) {
+			console.error('error connecting: ' + err.stack);
+			return;
+		}
+
+		console.log('connected as id ' + connection.threadId);
+	});
+
+	connection.query('SELECT Password FROM Users WHERE Username = ?', [username], function(err, rows, fields) {
+		if (err) {
+			console.error('error with query: ' + err.stack);
+		}
+		if (rows.length == 0) {
+			callback(false);
+		} else if (password.localeCompare(rows[0].Password) == 0) {
+			callback(true);
+		} else {
+			callback(false);
 		}
 	});
 

@@ -8,20 +8,22 @@ App.controller('profile', function (page, profileObject)
 	$(page).on('appShow', function () 
 	{
 		//Query the database for the current user's objects
-		var verify = Query.getProfileData();
-
+		
+		
 		//testing statements:
 		console.log("After loading profile, we have: ");
 		console.log(verify);
 
 		//See if the arguments of the current user's objects are null.
-		if(verify.arguments == null) {
+		if(verify == null) {
 
-			var list = document.getElementById('profileList');
-			list.innerHTML = "";
-			createList(list, null)
+			// var list = document.getElementById('profileList');
+			// list.innerHTML = "";
+			// createList(list, null)
 			
 			//In the case that they are, create hard-coded event that says "No events have been RSVP'd"
+
+			alert("You don't have any RSVP'd events!");
 			
 		} 
 		//otherwise, populate the list with that user's RSVP'd events
@@ -33,10 +35,6 @@ App.controller('profile', function (page, profileObject)
 				list.innerHTML = "";
 				createList(list, null);
 			});
-
-
-			
-			
 		}	
 	});
 });		
