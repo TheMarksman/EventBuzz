@@ -7,11 +7,25 @@ App.controller('profile', function (page, profileObject)
 	//representing user storage.
 	$(page).on('appShow', function () 
 	{
-		if(window.filterFlag) {
+		//Query the database for the current user's objects
+		var verify = Query.getProfileData();
+
+		//testing statements:
+		console.log("After loading profile, we have: ");
+		console.log(verify);
+
+		//See if the arguments of the current user's objects are null.
+		if(verify.arguments == null) {
+
 			var list = document.getElementById('profileList');
 			list.innerHTML = "";
 			createList(list, null)
-		} else {
+			
+			//In the case that they are, create hard-coded event that says "No events have been RSVP'd"
+			
+		} 
+		//otherwise, populate the list with that user's RSVP'd events
+		else {
 			Query.getProfileData(function(eventsData) {
 				window.profileObject = eventsData.events;
 				window.orderedArray = eventsData.order;
@@ -19,6 +33,10 @@ App.controller('profile', function (page, profileObject)
 				list.innerHTML = "";
 				createList(list, null);
 			});
+
+
+			
+			
 		}	
 	});
 });		
