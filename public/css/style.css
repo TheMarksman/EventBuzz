@@ -36,3 +36,15 @@
 .extra-margin {
 	margin-right: 60px;
 }
+
+.profile-button {
+	display: none;
+}
+
+.login-button {
+	display: inline;
+}
+
+.logout-button {
+	display: none;
+}

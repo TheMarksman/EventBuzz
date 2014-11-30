@@ -15,8 +15,9 @@
       <!--Toolbar-->  
       <div class="app-topbar dark-blue">
         <div class="app-title">Home</div>
-  		<div class="app-button right" data-target="login">Login</div>
-  		<div class="app-button right extra-margin" data-target="profile">Profile</div>
+  		<div class="app-button right login-button" data-target="login">Login</div>
+  		<div class="app-button right logout-button" onclick="logout()">Logout</div>
+  		<div class="app-button right extra-margin profile-button" data-target="profile">Profile</div>
   		<div class="app-button left" data-target="filter">Filter</div>
       </div>
       <!--Content-->
@@ -261,7 +262,7 @@
       </div>
     </div>
 
-<!--Scripts-->  
+<!--Scripts--> 
     <script src="components/appjs/zepto.js"></script>
     <script src="components/appjs/app.min.js"></script>
     <script src="components/lodash.js"></script>
