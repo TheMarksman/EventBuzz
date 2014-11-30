@@ -10,17 +10,19 @@ function checkCredentials(username, password) {
   credentials.password = password;
 
 	
-  Query.checkLogin(credentials, function(isValid) {
-    if (isValid) {
-      console.log("Valid login!");
+  Query.checkLogin(credentials, function(isValidLogin) {
+    if (isValidLogin) {
+      window.username = username;
+      App.load('home');
+
     } else {
       App.dialog({
         title        : 'Invalid Login',
         text         : 'The Username and Password provided were invalid.',
         cancelButton : 'Try Again'
       });
-      App.load('login');
     }
+    return;
   });
 }
 function inputFocus(i) {
