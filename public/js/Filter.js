@@ -315,7 +315,7 @@ function transferHomeFromFilter() {
     //the string array contains the intersection of multipleFilters
     //now...
     if(temp != null) {
-    	alert("prep");
+    	//alert("prep");
 		var newnewnewEventsObject = {};
 		var newnewnewOrderedArray = [];
 		for(var iiii = 0; iiii < temp.length; iiii++) {
@@ -399,14 +399,14 @@ function multipleFilters(array1, array2, array3, array4) {
 	var size2 = array2.length;
 	var size3 = array3.length;
 	var size4 = array4.length;
-	alert(size1 + " " + size2 + " " + size3 + " " + size4);
+	//alert(size1 + " " + size2 + " " + size3 + " " + size4);
 	
 	//0000	works
 	if(size1==0 & size2==0 & size3==0 & size4==0) {
 		//var _ans = array1.filter(function(n) {
 		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
 		//});
-		alert("FinalFilter0000: " + _ans);
+		//alert("FinalFilter0000: " + _ans);
 		return;
 	}
 	//0001	works
@@ -414,7 +414,7 @@ function multipleFilters(array1, array2, array3, array4) {
 		//var _ans = array1.filter(function(n) {
 		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
 		//});
-		alert("FinalFilter0001: " + _ans);
+		//alert("FinalFilter0001: " + _ans);
 		return;
 	}
 	//0010	works
@@ -422,7 +422,7 @@ function multipleFilters(array1, array2, array3, array4) {
 		//var _ans = array1.filter(function(n) {
 		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
 		//});
-		alert("FinalFilter0010: " + _ans);
+		//alert("FinalFilter0010: " + _ans);
 		return;
 	}
 	//0011	done
@@ -438,7 +438,7 @@ function multipleFilters(array1, array2, array3, array4) {
 		//var _ans = array1.filter(function(n) {
 		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
 		//});
-		alert("FinalFilter0100: " + _ans);
+		//alert("FinalFilter0100: " + _ans);
 		return;
 	}
 	//0101	done
@@ -470,7 +470,7 @@ function multipleFilters(array1, array2, array3, array4) {
 		//var _ans = array1.filter(function(n) {
 		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
 		//});
-		alert("FinalFilter1000: " + _ans);
+		//alert("FinalFilter1000: " + _ans);
 		return;
 	}
 	//1001	done
