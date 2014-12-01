@@ -20,21 +20,18 @@ try {
 } catch (err) {
 	App.load('home');
 }
-/*
+
 function rsvp() {
 	if (window.username) {
-		Query.rsvpToEvent(eventObject, function() {
-			App.dialog({
-				title: 'Successfully RSVP\'d'
-				okButton: 'OK'
-			});
+		App.dialog({
+			title: 'Successfully RSVP\'d',
+			okButton: 'OK'
 		});
 	} else {
 		App.dialog({
-			title: 'Please log in to RSVP'
+			title: 'Please log in to RSVP',
 			okButton: 'OK'
 		});
 		App.load('login');
 	}
 }
-*/
