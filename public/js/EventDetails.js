@@ -20,7 +20,7 @@ try {
 } catch (err) {
 	App.load('home');
 }
-
+/*
 function rsvp() {
 	if (window.username) {
 		Query.rsvpToEvent(eventObject, function() {
@@ -37,3 +37,4 @@ function rsvp() {
 		App.load('login');
 	}
 }
+*/

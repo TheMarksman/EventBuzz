@@ -223,8 +223,9 @@ exports.addAccountToDatabase = function(accountData, callback) {
 
 	connection.end();
 };
-
+/*
 exports.rsvpToEvent = function(eventObject, username, callback) {
+	
 	var connection = mysql.createConnection({
 		  host     : 'db4free.net',
 		  user     : 'eventbuzz',
@@ -250,3 +251,4 @@ exports.rsvpToEvent = function(eventObject, username, callback) {
 
 	connection.end();
 };
+*/
