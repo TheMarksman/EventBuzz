@@ -1,10 +1,4 @@
 App.controller('details', function (page, eventObject) {
-	if (window.username) {
-		$('.rsvp-button').css('display', 'inline');
-		$('.rsvp-button').css('display', 'inline');
-	} else {
-		$('.rsvp-button').css('display', 'none');
-	}
 	var selectedEvent = eventObject.event;
 	var nameOfEvent = eventObject.eventName;
 	var timeOfEvent = moment(selectedEvent.Date + ', ' + selectedEvent.Time);
@@ -25,4 +19,21 @@ try {
 	App.restore();
 } catch (err) {
 	App.load('home');
+}
+
+function rsvp() {
+	if (window.username) {
+		Query.rsvpToEvent(eventObject, function() {
+			App.dialog({
+				title: 'Successfully RSVP\'d'
+				okButton: 'OK'
+			});
+		});
+	} else {
+		App.dialog({
+			title: 'Please log in to RSVP'
+			okButton: 'OK'
+		});
+		App.load('login');
+	}
 }
