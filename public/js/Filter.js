@@ -310,7 +310,7 @@ function transferHomeFromFilter() {
     //Now this section incorporates multipleFilters
     //This removes are bug with: AND vs OR filtering
 	var temp = multipleFilters(categoryMatchesHolder,keywordMatchesHolder,dateMatchesHolder,timeMatchesHolder);		
-    alert(temp);
+    //alert(temp);
     //to fix this bug, the mulitpleFeatures method is called which returns a string array under certain conditions
     //the string array contains the intersection of multipleFilters
     //now...
@@ -332,6 +332,27 @@ function transferHomeFromFilter() {
 		newOrderedArray = newnewnewOrderedArray;	
     }
     
+    
+    //ending conditions
+    if(newOrderedArray.length == 0) {
+    	//alert(newOrderedArray.length);
+    	//alert("No matching results after filtering!");
+    	App.dialog({
+		  title        : 'Filter Error',
+		  text         : 'No matching results after filtering! Try again.',
+		  //okButton     : 'Try Again',
+		  cancelButton : 'Try Again'
+		}, function (tryAgain) {
+		  if (tryAgain) {
+			// try again
+		  }
+		});
+    	//App.back(function () {});
+    	clearform();
+    	//window.scrollTo(-400,-400);
+    	//$(page).scrollTop(0);
+    	return;
+    }
     
     
 	//NOW: update the eventsObject stored in the page to reflect the filter changes
