@@ -53,7 +53,7 @@
 		</div>
 
 		<!-- Add Event Button (bottom of main)-->
-	  	<div class="app-section" style="background:#345">
+	  	<div class="app-section create-event-button" style="background:#345">
         	<div class="app-button dark-blue" data-target="event-creation">Add an event!</div>
 	  	</div>
 
@@ -138,7 +138,7 @@
 		</form>
 	  </div>
 	  <div class="app-section" style="background:#345">
-	  	    <div class="app-button dark-blue" data-target="home">Create Account!</div>
+	  	    <div class="app-button dark-blue" onclick="addAccountToDatabase()" data-target="login">Create Account!</div>
 	  </div>
       </div>
     </div>
@@ -307,7 +307,6 @@
     <script src="components/appjs/zepto.js"></script>
     <script src="components/appjs/app.min.js"></script>
     <script src="components/lodash.js"></script>
-    <script src="components/crossfilter.js"></script>
     <script src="components/momentjs/moment.js"></script>
     <script src="../zerver/Query.js"></script>
     <script src="js/MainEvent.js"></script>
@@ -316,5 +315,6 @@
     <script src="js/EventDetails.js"></script>
     <script src="js/Filter.js"></script>
     <script src="js/Profile.js"></script>
+    <script src="js/AccountCreation.js"></script>
   </body>
 </html>

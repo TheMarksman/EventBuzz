@@ -174,3 +174,52 @@ exports.checkLogin = function(credentials, callback) {
 	connection.end();
 
 };
+
+exports.addAccountToDatabase = function(accountData, callback) {
+	var username = accountData.username,
+		password = accountData.password,
+		email = accountData.email,
+		type = 'user',
+		validUsername = true;
+
+
+	var account = {};
+
+	account.Username = username;
+	account.Password = password;
+	account.Email = email;
+	account.Type = type;
+
+	var connection = mysql.createConnection({
+	  host     : 'db4free.net',
+	  user     : 'eventbuzz',
+	  password : 'eventbuzz',
+	  database : 'eventbuzz'
+	});
+
+	connection.connect(function(err) {
+		if (err) {
+			console.error('error connecting: ' + err.stack);
+			return;
+		}
+
+		console.log('connected as id ' + connection.threadId);
+	});
+
+	var query = connection.query('INSERT INTO Users SET ?', account, function(err, rows, fields) {
+		if (err) {
+			validUsername = false;
+			console.error('error with query: ' + err.stack);
+		} else {
+			callback(true);
+		}
+	});
+
+	query.on('end', function() {
+		if (!validUsername) {
+			callback(false);
+		}
+	});
+
+	connection.end();
+};

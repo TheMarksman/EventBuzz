@@ -11,10 +11,12 @@ App.controller('home', function (page, eventsObject) {
 			$('.login-button').css('display', 'none');
 			$('.logout-button').css('display', 'inline');
       		$('.profile-button').css('display', 'inline');
+      		$('.create-event-button').css('display', 'inline');
 		} else {
       		$('.profile-button').css('display', 'none');
 			$('.logout-button').css('display', 'none');
 			$('.login-button').css('display', 'inline');
+			$('.create-event-button').css('display', 'none');
 		}
 
 		if(window.filterFlag) {
