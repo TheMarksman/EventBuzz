@@ -87,8 +87,8 @@ function transferHomeFromFilter() {
     	App.dialog({
 		  title        : 'Filter Error',
 		  text         : 'Nothing was selected! Try again.',
-		  //okButton     : 'Try Again',
-		  cancelButton : 'Try Again'
+		  okButton     : 'Ok.'
+		  //cancelButton : 'Try Again'
 		}, function (tryAgain) {
 		  if (tryAgain) {
 			// try again
@@ -111,7 +111,7 @@ function transferHomeFromFilter() {
 	    
 	    //now you have individual keys and events, begin parsing filters
 	    
-	    //parsing for the keyword filter, create a bank of contents
+//parsing for the keyword filter, create a bank of contents
 	    var eventStringContent = 	event.Category + " " +
 	    							event.Creator +  " " +
 	    							event.Date +  " " +
@@ -136,7 +136,7 @@ function transferHomeFromFilter() {
 	    	newOrderedArray.push(key);
 	    }
 
-		//next parse and filter by: Date
+//next parse and filter by: Date
 	    //pull the entered date from the form
 	    //form date var def above = formdate;
 	    var eventDate = event.Date;				
@@ -155,7 +155,7 @@ function transferHomeFromFilter() {
 	    }
 	    
 	    
-	    //next parse and filter by: Time
+//next parse and filter by: Time
 	    //pull the entered time from the form
 	    var eventTime = event.Time;
 	    //alert(eventTime);
@@ -170,7 +170,7 @@ function transferHomeFromFilter() {
 			newOrderedArray.push(key);
 		}
 
-	    //next parse and filter by: Categories
+//next parse and filter by: Categories
 	    //alert("categories checked: "+categGreek + categSports + categFood + categNonG + categInfoS + categStudy + categClub + categColl)  
 	    //grab the categories stored in the current event object
 	    var thiseventscategories = event.Category.toLowerCase().trim();
@@ -278,14 +278,13 @@ function transferHomeFromFilter() {
 	
 	//////////////////////////////////////////////////////////////////////
 	//Debug statements for the transfer of this data to the main page
-	console.log("\the stuff in this window");
-	console.log(window.eventsObject);
-	console.log(window.orderedArray);
-	console.log("\the stuff i just created");
-	console.log(newEventsObject);
-	console.log(newOrderedArray);
+	//console.log("\the stuff in this window");
+	//console.log(window.eventsObject);
+	//console.log(window.orderedArray);
+	//console.log("\the stuff i just created");
+	//console.log(newEventsObject);
+	//console.log(newOrderedArray);
 	//////////////////////////////////////////////////////////////////////
-
     
     //ending conditions
     if(newOrderedArray.length == 0) {
@@ -308,6 +307,33 @@ function transferHomeFromFilter() {
     	return;
     }
     
+    //Now this section incorporates multipleFilters
+    //This removes are bug with: AND vs OR filtering
+	var temp = multipleFilters(categoryMatchesHolder,keywordMatchesHolder,dateMatchesHolder,timeMatchesHolder);		
+    alert(temp);
+    //to fix this bug, the mulitpleFeatures method is called which returns a string array under certain conditions
+    //the string array contains the intersection of multipleFilters
+    //now...
+    if(temp != null) {
+    	alert("prep");
+		var newnewnewEventsObject = {};
+		var newnewnewOrderedArray = [];
+		for(var iiii = 0; iiii < temp.length; iiii++) {
+			var newkey = orderedArray[iiii];				//console.log("key: "+ key);
+			var newevent = eventsObject[newkey];		//console.log("event: " + event);
+			if(newEventsObject[newkey] != null) {
+				//alert(newkey);
+				newnewnewEventsObject[newkey] = newevent;
+				newnewnewOrderedArray.push(newkey);
+			}
+		}
+		//this fixes a bug where multiple matches throughout filtering creates duplicate event entries
+		newEventsObject = newnewnewEventsObject;
+		newOrderedArray = newnewnewOrderedArray;	
+    }
+    
+    
+    
 	//NOW: update the eventsObject stored in the page to reflect the filter changes
 	window.eventsObject = newEventsObject;
 	window.orderedArray = newOrderedArray;
@@ -318,7 +344,7 @@ function transferHomeFromFilter() {
 	//var passer = {"newobjs":newEventsObject,"neword":newOrderedArray,"flag": true}
 	//App.load('home', passer) //pass in here
 	//////////////////////////////////////////////////////////////////////
-	
+		
 	//Navigate back to the main page, first set the flag to notify homepage of incoming filtered data
 	//alert("ending filer function");
 	window.filterFlag = true;
@@ -366,4 +392,141 @@ function conv(formdate) {
 
 function clearform() {
 	document.getElementById("filterform").reset();
+}
+
+function multipleFilters(array1, array2, array3, array4) {
+	var size1 = array1.length;
+	var size2 = array2.length;
+	var size3 = array3.length;
+	var size4 = array4.length;
+	alert(size1 + " " + size2 + " " + size3 + " " + size4);
+	
+	//0000	works
+	if(size1==0 & size2==0 & size3==0 & size4==0) {
+		//var _ans = array1.filter(function(n) {
+		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		//});
+		alert("FinalFilter0000: " + _ans);
+		return;
+	}
+	//0001	works
+	else if(size1==0 & size2==0 & size3==0 & size4!=0) {
+		//var _ans = array1.filter(function(n) {
+		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		//});
+		alert("FinalFilter0001: " + _ans);
+		return;
+	}
+	//0010	works
+	else if(size1==0 & size2==0 & size3==0 & size4!=0) {
+		//var _ans = array1.filter(function(n) {
+		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		//});
+		alert("FinalFilter0010: " + _ans);
+		return;
+	}
+	//0011	done
+	else if(size1==0 & size2==0 & size3!=0 & size4!=0) {
+		var _ans = array3.filter(function(n) {
+			return array4.indexOf(n) != -1
+		});
+		//alert("FinalFilter0011: " + _ans);
+		return _ans;
+	}
+	//0100	works
+	else if(size1==0 & size2==0 & size3==0 & size4!=0) {
+		//var _ans = array1.filter(function(n) {
+		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		//});
+		alert("FinalFilter0100: " + _ans);
+		return;
+	}
+	//0101	done
+	else if(size1==0 & size2!=0 & size3==0 & size4!=0) {
+		var _ans = array2.filter(function(n) {
+			return array4.indexOf(n) != -1
+		});
+		//alert("FinalFilter0101: " + _ans);
+		return _ans;
+	}
+	//0110	done
+	else if(size1==0 & size2!=0 & size3!=0 & size4==0) {
+		var _ans = array2.filter(function(n) {
+			return array3.indexOf(n) != -1
+		});
+		//alert("FinalFilter0110: " + _ans);
+		return _ans;
+	}
+	//0111	done
+	else if( size1==0 & size2!=0 & size3!=0 & size4!=0 ) {
+		var _ans = array2.filter(function(n) {
+			return ( (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		});
+		//alert("FinalFilter0111: " + _ans);
+		return _ans;
+	}
+	//1000	works
+	else if(size1==0 & size2==0 & size3==0 & size4!=0) {
+		//var _ans = array1.filter(function(n) {
+		//	return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		//});
+		alert("FinalFilter1000: " + _ans);
+		return;
+	}
+	//1001	done
+	else if(size1!=0 & size2==0 & size3==0 & size4!=0) {
+		var _ans = array1.filter(function(n) {
+			return array4.indexOf(n) != -1
+		});
+		//alert("FinalFilter1001: " + _ans);
+		return _ans;
+	}
+	//1010	done
+	else if(size1!=0 & size2==0 & size3!=0 & size4==0) {
+		var _ans = array1.filter(function(n) {
+			return array3.indexOf(n) != -1
+		});
+		//alert("FinalFilter1010: " + _ans);
+		return _ans;
+	}
+	//1011	done
+	else if(size1!=0 & size2==0 & size3!=0 & size4!=0) {
+		var _ans = array1.filter(function(n) {
+			return ( (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		});
+		//alert("FinalFilter1011: " + _ans);
+		return _ans;
+	}
+	//1100	done
+	else if(size1!=0 & size2!=0 & size3==0 & size4==0) {
+		var _ans = array1.filter(function(n) {
+			return array2.indexOf(n) != -1
+		});
+		//alert("FinalFilter1100: " + _ans);
+		return _ans;
+	}
+	//1101	done
+	else if(size1!=0 & size2!=0 & size3==0 & size4!=0) {
+		var _ans = array1.filter(function(n) {
+			return ( (array2.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		});
+		//alert("FinalFilter1101: " + _ans);
+		return _ans;
+	}
+	//1110 done
+	else if(size1!=0 & size2!=0 & size3!=0 & size4==0) {
+		var _ans = array1.filter(function(n) {
+			return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) )
+		});
+		//alert("FinalFilter1110: " + _ans);
+		return _ans;
+	}
+	//1111	done
+	else if(size1!=0 & size2!=0 & size3!=0 & size4!=0) {
+		var _ans = array1.filter(function(n) {
+			return ( (array2.indexOf(n) != -1) & (array3.indexOf(n) != -1) & (array4.indexOf(n) != -1) )
+		});
+		//alert("FinalFilter1111: " + _ans);
+		return _ans;
+	}
 }
