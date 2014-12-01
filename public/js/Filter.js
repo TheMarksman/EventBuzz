@@ -310,7 +310,7 @@ function transferHomeFromFilter() {
     //Now this section incorporates multipleFilters
     //This removes are bug with: AND vs OR filtering
 	var temp = multipleFilters(categoryMatchesHolder,keywordMatchesHolder,dateMatchesHolder,timeMatchesHolder);		
-    alert(temp);
+    //alert(temp);
     //to fix this bug, the mulitpleFeatures method is called which returns a string array under certain conditions
     //the string array contains the intersection of multipleFilters
     //now...
