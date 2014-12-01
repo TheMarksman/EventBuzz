@@ -224,7 +224,7 @@ exports.addAccountToDatabase = function(accountData, callback) {
 	connection.end();
 };
 
-exports.rsvpToEvent = function(eventObject, callback) {
+exports.rsvpToEvent = function(eventObject, username, callback) {
 	var connection = mysql.createConnection({
 		  host     : 'db4free.net',
 		  user     : 'eventbuzz',
@@ -232,11 +232,21 @@ exports.rsvpToEvent = function(eventObject, callback) {
 		  database : 'eventbuzz'
 		});
 
+	//I don't know if this is the correct way to get the number stored in ID (Primary Key) for the Event table of the desired event 
+	//to be RSVP'd:
+	id = eventObject.id;
+
 
 	connection.connect();
 
-	// QUERY GOES HERE
-	  
+	connection.query('INSERT INTO Reservation (ID, EventID, Username) VALUES (DEFAULT,(SELECT `ID` FROM `Event` WHERE `ID` = ?), ?)', 
+		id, [username], function(err, rows, fields) {
+
+	  if (err) {
+			console.error('error with query: ' + err.stack);
+		}
+
+	  });
 
 	connection.end();
 };
